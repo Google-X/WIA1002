@@ -82,7 +82,7 @@ public class BannerA_G extends Banner{
                 System.out.print("  *****");
                 break;
             case 'B':
-                System.out.print("  *   *");
+                System.out.print("  **** ");
                 break;
             case 'C':
                 System.out.print("  *    ");
