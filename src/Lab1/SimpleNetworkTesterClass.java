@@ -25,12 +25,12 @@ public class SimpleNetworkTesterClass {
             System.out.println(s[i].toString());
         }
         
-        connect(s[0], s[1]);
-        connect(s[0], s[2]);
-        connect(s[0], s[3]);
+        ping(s[0], s[1]);
+        ping(s[0], s[2]);
+        ping(s[0], s[3]);
     }
     
-    public static void connect(SimpleNetwork n1, SimpleNetwork n2){
+    public static void ping(SimpleNetwork n1, SimpleNetwork n2){
         
         // Status
         if(n1.isStatus() == false){
