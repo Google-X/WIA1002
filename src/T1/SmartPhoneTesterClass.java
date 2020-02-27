@@ -29,7 +29,7 @@ public class SmartPhoneTesterClass {
 
         for (int pass = 1; pass < sp.length; pass++){
             for (int i = 0; i < sp.length - 1; i++) {
-                if (sp[i].getPrice() > sp[i + 1].getPrice()) {
+                if (sp[i].compareTo(sp[i+1])) {
                     temp = sp[i];
                     sp[i] = sp[i + 1];
                     sp[i + 1] = temp;
