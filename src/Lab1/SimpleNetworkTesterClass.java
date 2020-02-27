@@ -25,27 +25,8 @@ public class SimpleNetworkTesterClass {
             System.out.println(s[i].toString());
         }
         
-        ping(s[0], s[1]);
-        ping(s[0], s[2]);
-        ping(s[0], s[3]);
-    }
-    
-    public static void ping(SimpleNetwork n1, SimpleNetwork n2){
-        
-        // Status
-        if(n1.isStatus() == false){
-            System.out.printf("%s cannot ping %s because the destination %s is down.\n", n1.getName(), n2.getName(), n1.getName());
-        } else if (n2.isStatus() == false){
-            System.out.printf("%s cannot ping %s because the destination %s is down.\n", n1.getName(), n2.getName(), n2.getName());
-        } else {
-            
-            // IP and Subnet Mask
-            if(n1.getIP().equals(n2.getIP()) && n1.getSubnetMask().equals(n2.getSubnetMask())){
-                System.out.printf("%s can ping %s.\n", n1.getName(), n2.getName());
-            } else {
-                System.out.printf("%s cannot ping %s because the destination %s is located in different network.\n", n1.getName(), n2.getName(), n2.getName());
-            }
-        }
-        
+        s[0].ping(s[1]);
+        s[0].ping(s[2]);
+        s[0].ping(s[3]);
     }
 }
