@@ -17,7 +17,7 @@ public class Tarikh {
     }
 
     public String toString() {
-        return "Date is : " + day + "/" + month + "/" + year;
+        return String.format("Day: %d Month: %d Year: %d\nDate is : %02d/%02d/%d", day, month, year, day, month, year);  
     }
 
     
