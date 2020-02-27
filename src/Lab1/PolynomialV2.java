@@ -48,7 +48,7 @@ public class PolynomialV2 {
             ttl += coe[x1] * Math.pow(x, y);
             y--;
         }
-        System.out.println("when x = " + x);
+        System.out.println("\nwhen x = " + x);
         this.display();
         System.out.print(" = " + ttl);
     }
