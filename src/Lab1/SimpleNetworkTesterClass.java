@@ -8,7 +8,6 @@ Host Name: Host 4 IP: 10.1.1.1 Subnet Mask: 255.255.255.224 Status: UP
 Host 1 cannot ping Host 2 because the destination Host 2 is down.
 Host 1 cannot ping Host 3 because the destination Host 3 is located in different network.
 Host 1 can ping Host 4.
-
  */
 package Lab1;
 
