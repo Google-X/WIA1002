@@ -9,5 +9,5 @@ Nokia (RM1400) LG (RM 1800) Samsung (RM 2200) iPhone (RM 2400)
 package T1;
 
 public interface SmartPhoneComparable {
-    public int getPrice();
+    public boolean compareTo(Object s);
 }
