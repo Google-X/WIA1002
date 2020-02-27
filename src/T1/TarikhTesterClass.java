@@ -13,14 +13,14 @@ public class TarikhTesterClass {
         
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Day: ");
-        int day = s.nextInt();
-        System.out.print("Month: ");
-        int month = s.nextInt();
-        System.out.print("Year: ");
-        int year = s.nextInt();
+//        System.out.print("Day: ");
+//        int day = s.nextInt();
+//        System.out.print("Month: ");
+//        int month = s.nextInt();
+//        System.out.print("Year: ");
+//        int year = s.nextInt();
         
-        Tarikh t = new Tarikh(day, month, year);
+        Tarikh t = new Tarikh(10, 1, 2016);
         
         System.out.println(t.toString());
     }
