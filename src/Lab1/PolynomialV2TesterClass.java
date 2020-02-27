@@ -16,11 +16,8 @@ public class PolynomialV2TesterClass {
         PolynomialV2 p1 = new PolynomialV2(3, a);
         System.out.print("The polynomial is ");
         p1.display();
-        System.out.println();
         p1.calculate(2);
-        System.out.println();
         p1.calculate(-3.5);
-        System.out.println();
 
     }
 }
