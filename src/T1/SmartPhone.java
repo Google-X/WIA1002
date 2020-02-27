@@ -21,6 +21,12 @@ public class SmartPhone implements SmartPhoneComparable{
         return price;
     }
     
+    
+    @Override
+    public boolean compareTo(Object s){
+        return price > ((SmartPhone) s).getPrice();
+    }
+    
     public String toString() {
         return modelName + " (RM " + price + ") ";
     }
