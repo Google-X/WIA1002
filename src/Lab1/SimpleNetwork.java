@@ -39,6 +39,25 @@ public class SimpleNetwork {
         return status;
     }
     
+    public void ping(SimpleNetwork n1){
+        
+        // Status
+        if(this.isStatus() == false){
+            System.out.printf("%s cannot ping %s because the destination %s is down.\n", this.getName(), n1.getName(), this.getName());
+        } else if (n1.isStatus() == false){
+            System.out.printf("%s cannot ping %s because the destination %s is down.\n", this.getName(), n1.getName(), n1.getName());
+        } else {
+            
+            // IP and Subnet Mask
+            if(this.getIP().equals(n1.getIP()) && this.getSubnetMask().equals(n1.getSubnetMask())){
+                System.out.printf("%s can ping %s.\n", this.getName(), n1.getName());
+            } else {
+                System.out.printf("%s cannot ping %s because the destination %s is located in different network.\n", this.getName(), n1.getName(), n1.getName());
+            }
+        }
+        
+    }
+    
     public String toString() {
         return "Host Name: " + name + " IP: " + IP + " Subnet Mask: " + subnetMask + " Status: " + status;
     }
