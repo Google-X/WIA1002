@@ -3,7 +3,7 @@
 
 The sentence is : How are you?
 The lenth of the sentence : 12
-The number ofk vowels : 5
+The number of vowels : 5
 The number of words : 3
 
  */
