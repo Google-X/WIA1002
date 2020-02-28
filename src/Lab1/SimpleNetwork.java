@@ -4,13 +4,15 @@
 Host Name: Host 1 IP: 10.1.1.1 Subnet Mask: 255.255.255.224 Status: UP
 Host Name: Host 2 IP: 10.1.1.2 Subnet Mask: 255.255.255.224 Status: DOWN
 Host Name: Host 3 IP: 10.1.1.70 Subnet Mask: 255.255.255.224 Status: UP
-Host Name: Host 4 IP: 10.1.1.1 Subnet Mask: 255.255.255.224 Status: UP
+Host Name: Host 4 IP: 10.1.1.15 Subnet Mask: 255.255.255.224 Status: UP
 Host 1 cannot ping Host 2 because the destination Host 2 is down.
 Host 1 cannot ping Host 3 because the destination Host 3 is located in different network.
 Host 1 can ping Host 4.
 
  */
 package Lab1;
+
+import java.util.regex.Pattern;
 
 public class SimpleNetwork {
     private String name, IP, subnetMask;
@@ -49,13 +51,68 @@ public class SimpleNetwork {
         } else {
             
             // IP and Subnet Mask
-            if(this.getIP().equals(n1.getIP()) && this.getSubnetMask().equals(n1.getSubnetMask())){
+            if(ipANDsm(n1)){
                 System.out.printf("%s can ping %s.\n", this.getName(), n1.getName());
             } else {
                 System.out.printf("%s cannot ping %s because the destination %s is located in different network.\n", this.getName(), n1.getName(), n1.getName());
             }
         }
         
+    }
+    
+    public boolean ipANDsm(SimpleNetwork n1){
+        
+        for(int i = 3; i >= 0; i--){
+            
+            int[] ip1 = new int[8];
+            int[] ip2 = new int[8];
+            int[] sn1 = new int[8];
+            int[] sn2 = new int[8];
+            String AND1 = "";
+            String AND2 = "";
+            
+            // First IP and Subnet Mask
+            String ip1TempStr = String.format("%08d", Integer.parseInt(Integer.toBinaryString(Integer.parseInt(this.IP.split(Pattern.quote("."))[i]))));
+            String sn1TempStr = String.format("%08d", Integer.parseInt(Integer.toBinaryString(Integer.parseInt(this.subnetMask.split(Pattern.quote("."))[i]))));
+            
+            // Second IP and Subnet Mask
+            String ip2TempStr = String.format("%08d", Integer.parseInt(Integer.toBinaryString(Integer.parseInt(n1.getIP().split(Pattern.quote("."))[i]))));
+            String sn2TempStr = String.format("%08d", Integer.parseInt(Integer.toBinaryString(Integer.parseInt(n1.getSubnetMask().split(Pattern.quote("."))[i]))));
+            
+            
+            for(int j = 0; j < 8; j++){
+                ip1[j] = Integer.parseInt(String.valueOf(ip1TempStr.charAt(j)));
+                ip2[j] = Integer.parseInt(String.valueOf(ip2TempStr.charAt(j)));
+                sn1[j] = Integer.parseInt(String.valueOf(sn1TempStr.charAt(j)));
+                sn2[j] = Integer.parseInt(String.valueOf(sn2TempStr.charAt(j)));
+            }
+            
+//            System.out.println("IP1: " + ip1TempStr);
+//            for(int z : ip1) System.out.print(z);
+//            System.out.println("\nSN1: " + sn1TempStr);
+//            for(int z : sn1) System.out.print(z);
+//            System.out.println("\nIP2: " + ip2TempStr);
+//            for(int z : ip2) System.out.print(z);
+//            System.out.println("\nSN2: " + sn2TempStr);
+//            for(int z : sn1) System.out.print(z);
+            
+            
+            for(int k = 0; k < 8; k++){
+                AND1 += ip1[k] & sn1[k];
+                AND2 += ip2[k] & sn2[k];
+                
+//                if(k == 7){
+//                    System.out.println("AND 1: " + AND1);
+//                    System.out.println("AND 2: " + AND2);
+//                    System.out.println("DONE\n");
+//                }
+            }
+            
+            if(!AND1.equals(AND2)) return false;
+            
+        }
+        
+        return true;
     }
     
     public String toString() {
