@@ -13,7 +13,7 @@ The string is equal
  */
 package T2;
 
-class Tester{
+class CompareStrORSumTester{
     public static void main(String[] args) {
         
         CompareStrORSum<String, String> a = new CompareStrORSum<>("Hello", "World");
