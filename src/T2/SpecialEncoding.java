@@ -13,7 +13,8 @@ The Command is Print Insert Paste Copy Delete
  */
 package T2;
 
-class SpecialEncodingTester{
+class SpecialEncodingTester {
+
     public static void main(String[] args) {
         Integer[] num = {3, 2, 5, 0, 1};
         Character[] letter = {'P', 'I', 'V', 'C', 'D'};
@@ -26,91 +27,66 @@ class SpecialEncodingTester{
     }
 }
 
-public class SpecialEncoding<T>{
+public class SpecialEncoding<T> {
+
     private T[] t;
     private String[] code = new String[5];
-    
+
     public SpecialEncoding(T[] t) {
         this.t = t;
     }
 
-    public T[] getT() {
-        return t;
+    public void setCode() {
+        byte i = 0;
+        for (T value : t) {
+            switch (String.format("%s", value)) {
+                case "0":
+                case "C":
+                    code[i] = "Copy";
+                    i++;
+                    break;
+                case "1":
+                case "D":
+                    code[i] = "Delete";
+                    i++;
+                    break;
+                case "2":
+                case "I":
+                    code[i] = "Insert";
+                    i++;
+                    break;
+                case "3":
+                case "P":
+                    code[i] = "Print";
+                    i++;
+                    break;
+                case "4":
+                case "R":
+                    code[i] = "Rename";
+                    i++;
+                    break;
+                case "5":
+                case "V":
+                    code[i] = "Paste";
+                    i++;
+                    break;
+            }
+        }
     }
 
-    public void setT(T[] t) {
-        this.t = t;
-    }
-    
-    public void setCode(){
-        if(t.getClass().getSimpleName().equals("Integer[]")){
-            for(int i = 0; i < t.length; i++){
-                switch((Integer)(t[i])){
-                    case 0:
-                        code[i] = "Copy";
-                        break;
-                    case 1:
-                        code[i] = "Delete";
-                        break;
-                    case 2:
-                        code[i] = "Insert";
-                        break;
-                    case 3:
-                        code[i] = "Print";
-                        break;
-                    case 4:
-                        code[i] = "Rename";
-                        break;
-                    case 5:
-                        code[i] = "Paste";
-                        break;
-                    default:
-                        
-                }
-            }
-        } else if (t.getClass().getSimpleName().equals("Character[]")){
-            for(int i = 0; i < t.length; i++){
-                switch((Character)(t[i])){
-                    case 'C':
-                        code[i] = "Copy";
-                        break;
-                    case 'D':
-                        code[i] = "Delete";
-                        break;
-                    case 'I':
-                        code[i] = "Insert";
-                        break;
-                    case 'P':
-                        code[i] = "Print";
-                        break;
-                    case 'R':
-                        code[i] = "Rename";
-                        break;
-                    case 'V':
-                        code[i] = "Paste";
-                        break;
-                    default:
-                }
-            }
-            
-        }
-        
-    }
-    
     public String toString() {
         String finalStr = "The Code is ";
-        
-        for(int i = 0; i < t.length; i++){
+
+        for (int i = 0; i < t.length; i++) {
             finalStr += t[i] + " ";
         }
-        
+
         finalStr += "\nThe Command is ";
-        
-        for(int i = 0; i < code.length; i++){
+
+        for (int i = 0; i < code.length; i++) {
             finalStr += code[i] + " ";
         }
-        
+
         return finalStr;
     }
-    
 }
