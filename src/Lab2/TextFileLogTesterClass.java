@@ -22,11 +22,11 @@ public class TextFileLogTesterClass {
         
         int N = 5;
         TextFileLog<String> admin = new TextFileLog<>(5);
-//        admin.insert("James");
-//        admin.insert("Ahmad");
-//        admin.insert("Siti");
-//        admin.insert("Ramesh");
-//        admin.insert("John");
+        admin.insert("James");
+        admin.insert("Ahmad");
+        admin.insert("Siti");
+        admin.insert("Ramesh");
+        admin.insert("John");
         admin.read();
         
         admin.insert("Abdullah");
@@ -36,6 +36,8 @@ public class TextFileLogTesterClass {
         } else {
             System.out.println("Text File Log does not contain " + nameToSearch);
         }
+        
+        admin.clear();
         
     }
 }
