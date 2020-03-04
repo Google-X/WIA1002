@@ -128,6 +128,7 @@ public class TextFileLog<T extends Comparable<T>> implements SimpleLog<T> {
             System.err.println("Problem with files");
         }
         System.out.println("Text File Log Size " + getSize());
+        f.delete();
     }
 
     public void read() {
