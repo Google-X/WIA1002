@@ -13,84 +13,50 @@ The string is equal
  */
 package T2;
 
-class CompareStrORSumTester{
+class CompareStrORSumTester {
+
     public static void main(String[] args) {
-        
-        CompareStrORSum<String, String> a = new CompareStrORSum<>("Hello", "World");
-        CompareStrORSum<Double, Double> b = new CompareStrORSum<>(12.4, 64.3);
-        
+
+        CompareStrORSum<String> a = new CompareStrORSum<>("Hello", "World");
+        CompareStrORSum<Double> b = new CompareStrORSum<>(12.4, 64.3);
+
         // Object as the type is possible
-        CompareStrORSum<Object, Object> c = new CompareStrORSum<>(20, 35);
-        CompareStrORSum<Object, Object> d = new CompareStrORSum<>("Welcome", "Welcome");
+        CompareStrORSum<Object> c = new CompareStrORSum<>(20, 35);
+        CompareStrORSum<Object> d = new CompareStrORSum<>("Welcome", "Welcome");
     }
 }
 
-public class CompareStrORSum<T, U> {
-    private T t;
-    private U u;
-    
-    public CompareStrORSum(T t, U u) {
-        this.t = t;
-        this.u = u;
-        
-        if(checkDataType()){
-            switch (t.getClass().getSimpleName()) {
-                case "String":
-                    System.out.println(toString());
-                    checkSpelling();
-                    break;
-                case "Integer":
-                    System.out.println(toString());
-                    addInt();
-                    break;
-                case "Double":
-                    System.out.println(toString());
-                    addDouble();
-                    break;
-                default:
-                    break;
+public class CompareStrORSum<T> {
+
+    private T ob1, ob2;
+
+    public CompareStrORSum(T ob1, T ob2) {
+        this.ob1 = ob1;
+        this.ob2 = ob2;
+        System.out.println(toString());
+
+        if (ob1 instanceof String) {
+            
+            if (ob1.equals(ob2)) {
+                System.out.println("The string is equal.");
+            } else {
+                System.out.println("The string is not equal.");
             }
+            
+        } else if (ob1 instanceof Integer) {
+            
+            System.out.println("The sum of the integer is " + ((Integer) ob1 + (Integer) ob2));
+            
+        } else if (ob1 instanceof Double) {
+            
+            System.out.println("The sum of the double is " + ((Double) ob1 + (Double) ob2));
+            
         } else {
-            System.out.println("Different type of data.");
+            System.out.println("Undefined data type.");
         }
     }
     
-    public boolean checkDataType(){
-        return t.getClass().getSimpleName().equals(u.getClass().getSimpleName());
-    }
-    
-    public void checkSpelling(){
-        if(t.equals(u)) System.out.println("The string is equal.");
-        else System.out.println("The string is not equal.");
-    }
-    
-    public void addInt(){
-        System.out.print("The sum of the " + t.getClass().getSimpleName().toLowerCase() + " is ");
-        System.out.println( (T)(Integer)((Integer) t + (Integer) u));
-    }
-    
-    public void addDouble(){
-        System.out.print("The sum of the " + t.getClass().getSimpleName().toLowerCase() + " is ");
-        System.out.println( (T)(Double)((Double) t + (Double) u));
-    }
-    
-    public void setT(T t) {
-        this.t = t;
-    }
-
-    public void setU(U u) {
-        this.u = u;
-    }
-
-    public T getT() {
-        return t;
-    }
-
-    public U getU() {
-        return u;
-    }
-
     public String toString() {
-        return "The parameter value are : " + t + " and " + u;
-    }   
+        return "The parameter value are : " + ob1 + " and " + ob2;
+    }
 }
