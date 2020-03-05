@@ -24,26 +24,29 @@ public class UNOTesterClass {
     public static void main(String[] args) {
         
     // GAME 1
-        UNOArray<String> game1 = new UNOArray<>(7);
         
         //Player 1 draws in game 1
-        game1.draw(7);
-        System.out.println(game1.toString());
+        UNOArray<String> game1p1 = new UNOArray<>(7);
+        game1p1.draw(7);
+        System.out.println(game1p1.toString());
         
         //Player 2 draws in game 1
-        game1.draw(7);
-        System.out.println(game1.toString());
+        UNOArray<String> game1p2 = new UNOArray<>(7);
+        game1p2.draw(7);
+        System.out.println(game1p2.toString());
         
         System.out.println();
+        
     // GAME 2
-        UNOLinkedList<String> game2 = new UNOLinkedList<>();
         
         //Player 1 draws in game 2
-        game2.draw(7);
-        System.out.println(game2.toString());
+        UNOLinkedList<String> game2p1 = new UNOLinkedList<>();
+        game2p1.draw(7);
+        System.out.println(game2p1.toString());
         
         //Player 2 draws in game 2
-        game2.draw(7);
-        System.out.println(game2.toString());
+        UNOLinkedList<String> game2p2 = new UNOLinkedList<>();
+        game2p2.draw(7);
+        System.out.println(game2p2.toString());
     }
 }
