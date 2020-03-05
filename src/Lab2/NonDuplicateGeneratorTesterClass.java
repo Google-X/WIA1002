@@ -13,11 +13,11 @@ public class NonDuplicateGeneratorTesterClass {
         int N = 20;
         System.out.printf("Generate %d non-duplicate integer within 0-100\n", N);
 
-        NonDuplicateGenerator<Integer> arr = new NonDuplicateGenerator<>(N, "Array");
         NonDuplicateGenerator<Integer> list = new NonDuplicateGenerator<>(N, "LinkedList");
+        NonDuplicateGenerator<Integer> arr = new NonDuplicateGenerator<>(N, "Array");
         
-        System.out.println(arr.toString());
         System.out.println(list.toString());
+        System.out.println(arr.toString());
         
     }
 }
