@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class NonDuplicateGenerator<T extends Comparable<T>>{
+public class NonDuplicateGenerator<T extends Comparable<? super T>>{
     
     private T[] arr;
     private LinkedList<T> list;
@@ -129,9 +129,4 @@ public class NonDuplicateGenerator<T extends Comparable<T>>{
         
         return temp;
     }
-    
-    
-    
-    
-    
 }
