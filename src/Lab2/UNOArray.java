@@ -16,20 +16,19 @@ import java.util.Random;
 public class UNOArray<T> implements ADTUno{
     
     private T[] t;
-    private int numOfPlayer;
+    private static int numOfPlayer = 0;
     private int index;
     private int maxSize;
-    private Random r = new Random();
+    Random r = new Random();
     
     public UNOArray(int maxSize){
-        numOfPlayer = 0;
+        numOfPlayer++;
         this.maxSize = maxSize;
         index = -1;
         t = (T[]) new Object[maxSize];
     }
     
     public void draw(int N) {
-        numOfPlayer++;
         for(int i = 0; i < N; i++){
             t[i] = (T) color[r.nextInt(color.length)];
             
