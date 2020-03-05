@@ -18,19 +18,17 @@ import java.util.Random;
 public class UNOLinkedList<T> implements ADTUno{
 
     private LinkedList t;
-    private int numOfPlayer;
+    private static int numOfPlayer = 0;
     private int numOfDraws;
     private Random r = new Random();
     
     public UNOLinkedList(){
-        numOfPlayer = 0;
+        numOfPlayer++;
         t = new LinkedList();
     }
     
     public void draw(int N) {
-        t = new LinkedList();
         numOfDraws = N;
-        numOfPlayer++;
         for(int i = 0; i < N; i++){
             
             String temp = "";
