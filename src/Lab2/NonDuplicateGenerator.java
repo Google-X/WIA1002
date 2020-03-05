@@ -1,4 +1,4 @@
-/*
+/* [NOT GOOD]
  * 1. Create a class that used to generate N number of non-duplicate integer in between 0 – 100. The class must display the number in sorted list. The class must be generic to support array and linked-list implementation. Example output:  
 Generate 20 non-duplicate integer within 0-100.
 Linked List Implementation
