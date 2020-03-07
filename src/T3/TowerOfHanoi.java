@@ -16,7 +16,7 @@ public class TowerOfHanoi {
             System.out.printf("%sMove ring %d from %s to %s\n", indent, n, start, end);
             completeWalkthrough(n-1, temp, start, end);
             indent = indent.substring(2);
-            System.out.print("Done\n\n");
+//            System.out.print("Done\n\n");
         }
     }
     
