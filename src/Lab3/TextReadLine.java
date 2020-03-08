@@ -87,7 +87,5 @@ public class TextReadLine {
 
             writeLine(f, lineNumber+1, text);
         }
-        
     }
-    
 }
