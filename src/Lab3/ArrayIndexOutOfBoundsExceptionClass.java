@@ -33,16 +33,11 @@ public class ArrayIndexOutOfBoundsExceptionClass {
             try{
                 System.out.print("Enter an Integer: ");
                 arr[i] = s.nextInt();
-                s.nextLine();
                 i++;
             
-            // Problem now is that if you enter the wrong data type again, the program stops.
             } catch (InputMismatchException ime){
                 System.out.println("Invalid input type");
-                System.out.print("Enter an Integer: ");
-                s.nextLine();
-                arr[i] = s.nextInt();
-                i++;
+                s.next();
             } catch (ArrayIndexOutOfBoundsException ofb){
                 System.out.println(Arrays.toString(arr).replace("[^0-9\\s+]", ""));
                 break;
