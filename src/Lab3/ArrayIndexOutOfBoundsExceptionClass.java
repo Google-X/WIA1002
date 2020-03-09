@@ -39,7 +39,7 @@ public class ArrayIndexOutOfBoundsExceptionClass {
                 System.out.println("Invalid input type");
                 s.next();
             } catch (ArrayIndexOutOfBoundsException ofb){
-                System.out.println(Arrays.toString(arr).replace("[^0-9\\s+]", ""));
+                System.out.println(Arrays.toString(arr).replaceAll("[^0-9\\s+]", ""));
                 break;
             }
             
