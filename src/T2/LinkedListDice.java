@@ -23,7 +23,7 @@ package T2;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class LinkedListDice<T extends Comparable<T>> implements ADTDice<T>{
+public class LinkedListDice<T> implements ADTDice<T>{
     
     private LinkedList<T> linkList;
     private int maxSize;
@@ -36,26 +36,10 @@ public class LinkedListDice<T extends Comparable<T>> implements ADTDice<T>{
     
     public void rollDice() {
         for(int i = 0; i < maxSize; i++){
-            insert((T)(Integer)(1 + r.nextInt(6)));
+            linkList.add((T)(Integer)(1 + r.nextInt(6)));
         }
     }
     
-    public void insert(T t) {
-        if(!isFull()){
-            linkList.add((T) t);
-        } else {
-            System.out.println("The log is full.");
-        }
-    }
-    
-    public boolean isFull() {
-        return (linkList.size() == maxSize);
-    }
-    
-    public int size() {
-        return linkList.size();
-    }
-
     public String toString() {
         int total = 0;
         String temp = "Linked List Implementation: Roll " + maxSize + " time(s)\n";
@@ -69,3 +53,18 @@ public class LinkedListDice<T extends Comparable<T>> implements ADTDice<T>{
         return temp;
     }
 }
+//    public void insert(T t) {
+//        if(!isFull()){
+//            linkList.add((T) t);
+//        } else {
+//            System.out.println("The log is full.");
+//        }
+//    }
+//    
+//    public boolean isFull() {
+//        return (linkList.size() == maxSize);
+//    }
+//    
+//    public int size() {
+//        return linkList.size();
+//    }
