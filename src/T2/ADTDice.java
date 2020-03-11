@@ -22,11 +22,10 @@ package T2;
 
 public interface ADTDice<T> {
     
-    // Need public or not?
     public void rollDice();
-    public void insert(T t);
-    public boolean isFull();
-    public int size();
+//    public void insert(T t);
+//    public boolean isFull();
+//    public int size();
     public String toString();
     
 }
