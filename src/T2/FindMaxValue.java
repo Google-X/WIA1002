@@ -29,15 +29,4 @@ class FindMaxValue{
         
         return max;
     }
-    
-    public static <T> String arrayToStr(T[] arr){
-        String finalStr = "";
-        
-        for(T e : arr){
-            finalStr += e + " ";
-        }
-        
-        return finalStr;
-    }
 }
-
