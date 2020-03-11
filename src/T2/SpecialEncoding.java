@@ -13,6 +13,8 @@ The Command is Print Insert Paste Copy Delete
  */
 package T2;
 
+import java.util.Arrays;
+
 class SpecialEncodingTester {
 
     public static void main(String[] args) {
@@ -75,18 +77,10 @@ public class SpecialEncoding<T> {
     }
 
     public String toString() {
-        String finalStr = "The Code is ";
+        String finalStr = "The Code is " + Arrays.toString(t).replaceAll("[^0-9A-Za-z\\s+]", "");
 
-        for (int i = 0; i < t.length; i++) {
-            finalStr += t[i] + " ";
-        }
-
-        finalStr += "\nThe Command is ";
-
-        for (int i = 0; i < code.length; i++) {
-            finalStr += code[i] + " ";
-        }
-
+        finalStr += "\nThe Command is " + Arrays.toString(code).replaceAll("[^0-9A-Za-z\\s+]", "");
+        
         return finalStr;
     }
 }
