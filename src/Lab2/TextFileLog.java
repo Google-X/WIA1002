@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class TextFileLog<T extends Comparable<T>> implements SimpleLog<T> {
+public class TextFileLog<T> implements SimpleLog<T> {
 
     private int maxSize;
     private File f = new File("Names.txt");
@@ -130,7 +130,7 @@ public class TextFileLog<T extends Comparable<T>> implements SimpleLog<T> {
         System.out.println("Text File Log Size " + getSize());
         f.delete();
     }
-
+    
     public void read() {
         try {
             Scanner s = new Scanner(new FileInputStream(f));
