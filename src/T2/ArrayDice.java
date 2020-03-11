@@ -24,7 +24,8 @@ import java.util.Random;
 
 // Without "extends Comparable<T>" also can
 // With "extends Comparable" also can
-public class ArrayDice<T extends Comparable<T>> implements ADTDice<T>{
+// But we are not comparing so both are not needed
+public class ArrayDice<T> implements ADTDice<T>{
     
     private T[] arr;
     private int index, maxSize;
@@ -33,31 +34,13 @@ public class ArrayDice<T extends Comparable<T>> implements ADTDice<T>{
     public ArrayDice(int numOfRoll) {
         index = -1;
         maxSize = numOfRoll;
-        arr = (T[]) new Comparable[numOfRoll]; // What is the meaning of number in the square here?
+        arr = (T[]) new Object[numOfRoll]; // What is the meaning of number in the square here?
     }
     
     public void rollDice() {
         for(int i = 0; i < maxSize; i++){
-            insert((T)(Integer)(1 + r.nextInt(6)));
+            arr[i] = ((T)(Integer)(1 + r.nextInt(6)));
         }
-    }
-    
-    public void insert(T t) {
-        if(!isFull()){
-            index++;
-            arr[index] = t;
-//            arr[index] = r.nextInt(5); // <-- why cannot?
-        } else {
-            System.out.println("The log is full");
-        }
-    }
-    
-    public boolean isFull() {
-        return maxSize == (index + 1);
-    }
-    
-    public int size() {
-        return index + 1;
     }
     
     public String toString() {
@@ -74,3 +57,23 @@ public class ArrayDice<T extends Comparable<T>> implements ADTDice<T>{
         return temp;
     }
 }
+
+// REMOVED
+//    public void insert(T t) {
+//        if(!isFull()){
+//            index++;
+//            arr[index] = t;
+////            arr[index] = (T)(Integer)r.nextInt(5); // <-- This one also can, but the question one
+//            System.out.println(arr[index]);
+//        } else {
+//            System.out.println("The log is full");
+//        }
+//    }
+//    
+//    public boolean isFull() {
+//        return maxSize == size();
+//    }
+//    
+//    public int size() {
+//        return index + 1;
+//    }
