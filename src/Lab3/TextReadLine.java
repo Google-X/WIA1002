@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -15,77 +14,34 @@ public class TextReadLine {
     public static void main(String[] args) {
         
         File source = new File("C:/Users/User/Documents/NetBeansProjects/WIA1002/src/Lab3/Files/TextReadLineFile.txt");
-        int line = getLine(source);
-        String str = readLine(source, line, 1);
-//        System.out.println(str);
-        String reverse = reverse(str, str.length());
-//        System.out.println(reverse);
-        
         File destination = new File("C:/Users/User/Documents/NetBeansProjects/WIA1002/src/Lab3/Files/TextReadLineReverse.txt");
-        String[] reversed = reverse.split("\\n");
-//        System.out.println(reversed.length);
-        writeLine(destination, 1, reversed);
-        
-    }
-    
-    public static int getLine(File f){
-        int line = 0;
         
         try{
-            Scanner s = new Scanner(new FileInputStream(f));
+            Scanner s = new Scanner(new FileInputStream(source));
+            PrintWriter pw = new PrintWriter(new FileOutputStream(destination));
             
-            while(s.hasNextLine()){
-                line++;
-                s.nextLine();
-            }
+            WriteReverse(s, pw);
             
+            pw.close();
             s.close();
         } catch (FileNotFoundException fnf){
             System.err.println("File not found!");
         }
-        
-        return line;
+         
     }
     
-    public static String readLine(File f, int lineNumber, int current){
-        if(current == lineNumber+1) return "";
-        String fileText = "";
-        
-        try{
-            Scanner s = new Scanner(new FileInputStream(f));
-            
-            for(int i = 0; i < current-1; i++) s.nextLine();
-            fileText += s.nextLine() + "\n";
-            
-            s.close();
-        } catch (FileNotFoundException fnf){
-            System.err.println("File not found!");
-        } 
-        return fileText + readLine(f, lineNumber, current+1);
+    public static void WriteReverse(Scanner s, PrintWriter pw){
+        String text = "";
+        if(s.hasNextLine()){
+            text = s.nextLine();
+            text = reverse(text, text.length()) + "\n";
+            WriteReverse(s, pw);
+            pw.write(text);
+        }    
     }
     
-    public static String reverse(String s, int index){
-        
-        if(index == 1) return "" + s.charAt(index - 1);
-        return s.charAt(index - 1) + reverse(s, --index);
-        
-    }
-    
-    public static void writeLine(File f, int lineNumber, String[] text){
-        if(lineNumber == text.length) System.out.println("Done writing reverse text.");
-        
-        if (lineNumber < text.length){
-            try{
-                PrintWriter pw = new PrintWriter(new FileOutputStream(f, true));
-
-                pw.println(text[lineNumber]);
-
-                pw.close();
-            } catch (IOException ioe){
-                System.err.println("");
-            }
-
-            writeLine(f, lineNumber+1, text);
-        }
+    public static String reverse(String text, int index){
+        if(index == 1) return "" + text.charAt(0);
+        return text.charAt(index - 1) + reverse(text, --index);
     }
 }
