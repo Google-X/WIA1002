@@ -34,9 +34,10 @@ public class Numbers {
         
 // Q6
         System.out.println("\nQuestion 6:");
-        int[] q6Arr = {78, 45, 34, 23, 17, 10, 8};
+        int[] q6Arr = {10, 8, 45, 23, 17, 78, 34};
         LinkedList<Integer> q6List = new LinkedList<>();
         for(int i : q6Arr) q6List.addFrontNode(i);
+        System.out.print("The original list: ");
         q6List.showList();
         q6List.showMedian();
         
