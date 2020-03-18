@@ -245,9 +245,23 @@ public class LinkedList<T extends Comparable<T>> {
     }
     
 // Q6 method
+    public void sort(){
+        for(int i = 1; i < length(); i++){
+            for(int j = 0; j < length()-1; j++){
+                if(get(j).compareTo(get(j+1)) > 0){
+                    T temp = get(j);
+                    set(get(j+1), j);
+                    set(temp, j+1);
+                }
+            }
+        }
+        System.out.print("The sorted list: ");
+        showList();
+    }
+    
     public void showMedian(){
         // NOTE: get(int index)
-        
+        sort();
         if(length() % 2 == 0){
             System.out.println("The medians are: " + get(length()/2 - 1) + " & " + get((length()/2)));
         } else {
