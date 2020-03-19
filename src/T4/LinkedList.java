@@ -82,8 +82,8 @@ public class LinkedList<T extends Comparable<T>> {
     
     public void addNodeByPosition(T data, int index){
         if(index == 0) addFrontNode(data);
-        else if (index == length()-1) addNode(data);
-        else if(index >= length()) System.out.println("Invalid index. No node is added");
+        else if (index == length()) addNode(data);
+        else if(index > length()) System.out.println("Invalid index. No node is added");
         else {
             ListNode newNode = new ListNode(data, null);
             ListNode currentListNode = head;
