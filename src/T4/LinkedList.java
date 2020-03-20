@@ -132,6 +132,18 @@ public class LinkedList<T extends Comparable<T>> {
         }
     }
     
+    public void deleteNodeByPositionShorter(int index){
+        if(index == 0) deleteFrontNode();
+        else if (index == length()-1) deleteNode();
+        else if(index >= length()) System.out.println("Invalid index. No node is deleted.");
+        else {
+            ListNode currentListNode = head;
+            for(int i = 1; i < index; i++) currentListNode = currentListNode.getLink();
+            currentListNode.setLink(currentListNode.getLink().getLink());
+//            currentListNode.setLink(null);
+        }
+    }
+    
     public boolean contains(T data){
         ListNode currentNode = head;
         while(currentNode != null){
