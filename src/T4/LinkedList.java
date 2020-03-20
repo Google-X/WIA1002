@@ -50,6 +50,19 @@ public class LinkedList<T extends Comparable<T>> {
         }
     }
     
+    public void deleteNodeShorter(){
+        ListNode currentNode = head;
+        if(head != null) {
+            if(currentNode.getLink() == null) head = null;
+            else {
+                while(currentNode.getLink().getLink() != null){
+                    currentNode = currentNode.getLink();
+                }
+                currentNode.setLink(null);
+            }
+        }
+    }
+    
     public void deleteNode(){
         ListNode currentNode = head;
         ListNode previousNode = head;
