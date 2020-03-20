@@ -70,5 +70,35 @@ public class TestTime {
         }
         System.out.println("50 Loop time taken(ns): " + deleteNode);
         System.out.println("Average time taken(ns): " + (Double)(deleteNode/50.0));
+        
+// REMOVE BY POSITION REMOVE BY POSITION REMOVE BY POSITION REMOVE BY POSITION REMOVE BY POSITION 
+//// LONGER LONGER LONGER LONGER LONGER LONGER LONGER LONGER LONGER LONGER LONGER LONGER LONGER
+        LinkedList<Integer> f = new LinkedList<>();
+        f.addNode(1);
+        f.addNode(2);
+        f.addNode(3);
+        f.addNode(4);
+        f.addNode(5);
+        long flonger = System.nanoTime();
+        f.deleteNodeByPosition(3);
+        flonger = System.nanoTime() - flonger;
+        System.out.println("\nLonger Algorithm");
+        f.showList();
+        System.out.println("Time taken(ns): " + flonger);        
+        
+// SHORTER SHORTER SHORTER SHORTER SHORTER SHORTER SHORTER SHORTER SHORTER SHORTER SHORTER
+        LinkedList<Integer> e = new LinkedList<>();
+        e.addNode(1);
+        e.addNode(2);
+        e.addNode(3);
+        e.addNode(4);
+        e.addNode(5);
+        long eshorter = System.nanoTime();
+        e.deleteNodeByPositionShorter(3);
+        eshorter = System.nanoTime() - eshorter;
+        System.out.println("\nShorter Algorithm");
+        e.showList();
+        System.out.println("Time taken(ns): " + eshorter);
+        
     }
 }
