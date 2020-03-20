@@ -140,7 +140,6 @@ public class LinkedList<T extends Comparable<T>> {
             ListNode currentListNode = head;
             for(int i = 1; i < index; i++) currentListNode = currentListNode.getLink();
             currentListNode.setLink(currentListNode.getLink().getLink());
-//            currentListNode.setLink(null);
         }
     }
     
