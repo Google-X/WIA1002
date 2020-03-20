@@ -107,6 +107,18 @@ public class LinkedList<T extends Comparable<T>> {
         }
     }
     
+    public void addNodeByPositionShorter(T data, int index){
+        if(index == 0) addFrontNode(data);
+        else if (index == length()) addNode(data);
+        else if(index > length()) System.out.println("Invalid index. No node is added");
+        else {
+            ListNode currentNode = head;
+            for(int i = 1; i < index; i++) currentNode = currentNode.getLink();
+            ListNode newNode = new ListNode(data, currentNode.getLink());
+            currentNode.setLink(newNode);
+        }
+    }
+    
     public void deleteNodeByPosition(int index){
         if(index == 0) deleteFrontNode();
         else if (index == length()-1) deleteNode();
