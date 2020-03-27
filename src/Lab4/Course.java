@@ -24,7 +24,11 @@ public class Course {
     private int creditHours;
     private static int totalCreditHours;
     private static int point = 0;
-
+    
+    public Course(){
+        
+    }
+    
     public Course(String courseCode, String courseName, int creditHours, char grade) {
         this.courseCode = courseCode;
         this.courseName = courseName;
