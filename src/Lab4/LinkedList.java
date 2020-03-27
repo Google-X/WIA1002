@@ -3,9 +3,38 @@
  */
 package Lab4;
 
-public class LinkedList<E extends Comparable<E>> {
-    private ListNode head;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
+public class LinkedList<E extends Comparable<E>>{
+    // Inner class LinkedListIterator
+    class LinkedListIterator implements Iterator<E>{
+        
+        ListNode<E> index;
+        
+        public LinkedListIterator(){
+            index = head;
+        }
+        
+        @Override
+        public boolean hasNext() {
+            return index != null;
+        }
+
+        @Override
+        public E next(){
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E val = index.getData();
+            index = index.getLink();
+            return val;
+        }
+        
+    }
+    
+    private ListNode head;
+    
     public LinkedList() {
         head = null;
     }
@@ -129,7 +158,7 @@ public class LinkedList<E extends Comparable<E>> {
         }
         else {
             ListNode c = head;
-            for(int j=1;j<1;j++) c = c.getLink();
+            for(int j=1;j<i;j++) c = c.getLink(); // <-- Bug found
             c.setLink(c.getLink().getLink());
             return (E) c.getLink().getData();
         }
@@ -281,6 +310,9 @@ public class LinkedList<E extends Comparable<E>> {
         */
     }
     
-    
+// Question 5 Iterator
+    public Iterator<E> iterator(){
+        return new LinkedListIterator();
+    }
     
 }
