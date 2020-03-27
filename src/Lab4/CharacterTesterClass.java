@@ -30,7 +30,6 @@ B --> a --> n --> k --> i --> n --> g -->
  */
 package Lab4;
 
-import static Lab4.TesterClass.reverseBack;
 import java.util.Scanner;
 
 public class CharacterTesterClass {
@@ -78,5 +77,23 @@ public class CharacterTesterClass {
         System.out.println("\n\nReverse the list. Recursive method in tester class");
         reverseBack(alternateList1, alternateList1.length());
         alternateList1.showList();
+    }
+    
+    public static void reverseBack(LinkedList list, int size){
+        if(list.length()%2 == 0){
+            if(size >= list.length()/2 + 1){
+                Comparable tmp = list.get(size-1);
+                list.set(list.get(list.length()-size), size-1);
+                list.set(tmp, list.length()-size);
+                reverseBack(list, size-1);
+            }
+        } else {
+            if(size > list.length()/2){
+                Comparable tmp = list.get(size-1);
+                list.set(list.get(list.length()-size), size-1);
+                list.set(tmp, list.length()-size);
+                reverseBack(list, size-1);
+            }
+        }
     }
 }
