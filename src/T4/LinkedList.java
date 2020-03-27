@@ -264,16 +264,14 @@ public class LinkedList<T extends Comparable<T>> {
         showList();
     }
     
+    // FOUND BUGS FIXED: COUNT FROM BEHIND
     public void deleteAll(T data){
         System.out.println("Delete " + data + " from the list.");
-        ListNode currentNode = head;
         if(head == null){
             System.out.println("There is nothing in the list");
         } else {
-            for(int i = 0; i < length(); i++){
-                if(data.compareTo((T)currentNode.getData()) == 0)
-                    deleteNodeByPosition(i);
-                currentNode = currentNode.getLink();
+            for(int i = length()-1; i >= 0; i--){
+                if(data.compareTo(get(i)) == 0) deleteNodeByPosition(i);
             }
         }
         System.out.printf("Linked List has %d node(s)\n", length());
