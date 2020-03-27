@@ -40,7 +40,7 @@ public class TesterClass {
         System.out.println("\nInsert the random numbers in a sorted linked list");
         s.showList();
         System.out.println();
-        */
+        
 // Question 2
         Scanner sc = new Scanner(System.in);
         System.out.println("\nQuestion 2");
@@ -88,6 +88,15 @@ public class TesterClass {
         alternateList1.showList();
         
 // Question 3
+        Course[] c = new Course[3];
+        c[0] = new Course("WXX101", "Programming", 5, 'B');
+        c[1] = new Course("WXX201", "Networking", 4, 'C');
+        c[2] = new Course("WXX301", "Operating Systems", 3, 'A');
+        CourseLinkedList<Course> student1 = new CourseLinkedList<>();
+        for(Course i : c) student1.addLastNode(i);
+        student1.showList();
+        c[2].showSummary();
+        */
     }
     
     public static void reverseBack(LinkedList list, int size){
@@ -108,6 +117,7 @@ public class TesterClass {
         }
     }
 }
+
 
 /*
 1. Create the ListNode.java and LinkedList.java file (only the methods required based on the lecture notes). Then create a tester class that generate 10 random numbers within 0 – 100. After that, insert the numbers into the linked list as below: 
@@ -156,4 +166,20 @@ g --> n --> i --> k --> n --> a --> B -->
 Reverse the list. Recursive method in tester class
 B --> a --> n --> k --> i --> n --> g -->
 
+
+3. Create a class Course that consists of the course code, course name, credit hours and the grade of the course (A, B, C, D and F). The point allocate to each grade is (4, 3, 2, 1 and 0). Then, insert the following information into a linked list. After that, calculate the grade point average for the student. 
+
+Example output
+Course Code         Course Name         Credit Hours        Grade 
+WXX101              Programming         5                   B 
+WXX201              Networking          4                   C
+WXX301              Operating System    3                   A
+
+The list consist of
+Course : WXX101 (Programming) - 5 credit hours. Grade : B -->
+Course : WXX201 (Networking) - 4 credit hours. Grade : C -->
+Course : WXX301 (Operating System) - 3 credit hours. Grade : A -->
+Total point is 35
+Total credit is 12
+Grade point average is 2.92
 */
