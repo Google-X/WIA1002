@@ -18,8 +18,8 @@ public class LinkedList<E extends Comparable<E>> {
         int counter = 0;
         ListNode c = head;
         while(c != null){
-            counter++;
             c = c.getLink();
+            counter++;
         }
         return counter;
     }
@@ -215,4 +215,72 @@ public class LinkedList<E extends Comparable<E>> {
             }
         }
     }
+    
+// Question 2 methods
+    public LinkedList<E>[] splitList(){
+        LinkedList<E>[] ret = new LinkedList[2];
+        ret[0] = new LinkedList<>();
+        ret[1] = new LinkedList<>();
+        if(length()%2 == 0){
+            for(int i=0;i<length()/2;i++)ret[0].addLastNode(get(i));
+            for(int i=length()/2;i<length();i++)ret[1].addLastNode(get(i));
+        } else {
+            for(int i=0;i<(length()/2)+1;i++)ret[0].addLastNode(get(i));
+            for(int i=(length()/2)+1;i<length();i++)ret[1].addLastNode(get(i));
+        }
+        
+        return ret;
+    }
+    
+    public LinkedList<E>[] alternateList(){
+        LinkedList<E>[] ret = new LinkedList[2];
+        ret[0] = new LinkedList<>();
+        ret[1] = new LinkedList<>();
+        
+        for(int i=0;i<length();i++){
+            if(i%2==0) ret[0].addLastNode(get(i));
+            else ret[1].addLastNode(get(i));
+        }
+        
+        return ret;
+    }
+    
+    public void mergeList(LinkedList<E> list){
+        int size = length() + list.length();
+        for(int i=0,j=0;i<size;i++){
+            if(i%2 != 0) {
+                addNodeByPosition(list.get(j), i);
+                j++;
+            }
+        }
+    }
+    
+    public void reverse(int size){
+        if(length()%2 == 0){
+            if(size >= length()/2 + 1){
+                E tmp = get(size-1);
+                set(get(length()-size), size-1);
+                set(tmp, length()-size);
+                reverse(size-1);
+            }
+        } else {
+            if(size > length()/2){
+                E tmp = get(size-1);
+                set(get(length()-size), size-1);
+                set(tmp, length()-size);
+                reverse(size-1);
+            }
+        }
+            
+        /* // Using original list, two parameters
+        if(size == 1) set((E)list.get(0), list.length()-1);
+        else {
+            set((E)list.get(size-1), list.length()-size);
+            reverse(list, size-1);
+        }
+        */
+    }
+    
+    
+    
 }
