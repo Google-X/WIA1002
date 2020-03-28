@@ -16,13 +16,16 @@ public class CircularLinkedList<E> {
     }
     
     public int length(){
-        int counter = 1;
-        ListNode c = head;
-        while(c.getLink() != head) {
-            counter++;
-            c = c.getLink();
+        if(head == null)return 0;
+        else {
+            int counter = 1;
+            ListNode c = head;
+            while(c.getLink() != head) {
+                counter++;
+                c = c.getLink();
+            }
+            return counter;
         }
-        return counter;
     }
     
     public void showCircularNode(){
@@ -35,6 +38,19 @@ public class CircularLinkedList<E> {
                 c = c.getLink();
             }
             System.out.println(c.toString());
+        } else System.err.println("EmptyCircularLinkedListException");
+    }
+    
+    public void showCircularNodeMusic(){
+        if(head != null){
+            ListNode c = head;
+            System.out.print(c.musicPlayerToString());
+            c = c.getLink();
+            while(c != head){
+                System.out.print(c.musicPlayerToString());
+                c = c.getLink();
+            }
+            System.out.println(c.musicPlayerToString());
         } else System.err.println("EmptyCircularLinkedListException");
     }
     
