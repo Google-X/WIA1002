@@ -37,4 +37,8 @@ public class ListNode<E> {
     public String toString() {
         return data + " --> ";
     }
+    
+    public String musicPlayerToString(){
+        return "Music : " + data + " --> ";
+    }
 }
