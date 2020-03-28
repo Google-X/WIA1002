@@ -18,6 +18,7 @@ public class Music {
     
     static JFXPanel panel = new JFXPanel();
     static String folderDir = "C:/Users/User/Music/0Songs/Chill/";
+    // Put the name of one of your file
     static Media hit = new Media(Paths.get(folderDir + "Bright.mp3").toUri().toString());
     static MediaPlayer mediaPlayer = new MediaPlayer(hit);
     static CircularLinkedList<String> li = new CircularLinkedList<>();
