@@ -10,13 +10,11 @@ package T5;
 import java.util.Random;
 
 public class NumberStacking {
-
     public static void main(String[] args) {
 
         Random r = new Random();
-        Stack<Integer> even = new Stack<>();
-        Stack<Integer> odd = new Stack<>();
         int[] arr = new int[10];
+        Stack<Integer> st = new Stack<>();
         
         System.out.print("The random numbers are : ");
         for(int i = 0; i < arr.length; i++) {
@@ -24,12 +22,16 @@ public class NumberStacking {
             System.out.print(arr[i] + " ");
         }
         
+// Using array & two stacks
+        System.out.println("Using two stacks");
+        Stack<Integer> even = new Stack<>();
+        Stack<Integer> odd = new Stack<>();
+        
         for (int i = 0; i < arr.length; i++) {
             if(arr[i]%2 == 0) even.push(arr[i]);
             else odd.push(arr[i]);
         }
 
-        Stack<Integer> st = new Stack<>();
         int loop = 0;
         if(even.getSize() == odd.getSize()) loop = arr.length;
         else if(even.getSize() < odd.getSize()) loop = (even.getSize()*2) + 1;
@@ -44,5 +46,33 @@ public class NumberStacking {
         st.showStack();
         
         System.out.println("\nThe numbers remain in the stack " + st.getSize());
+        
+// Using array & iterate
+        System.out.println("\nUsing array and iteration");
+        Stack<Integer> array = new Stack<>();
+        int c = 0, i = 0;
+        while(c < loop){
+            if(c%2 == 0) {
+                if(arr[i]%2 != 0) {
+                    array.push(arr[i]);
+                    arr[i] = 0;
+                    c++;
+                }
+            }
+            else {
+                if(arr[i] != 0 && arr[i]%2 == 0) {
+                    array.push(arr[i]);
+                    arr[i] = 0;
+                    c++;
+                }
+            }
+            if(i == arr.length-1) i = 0;
+            else i++;
+        }
+        System.out.print("The numbers in the stack : ");
+        array.showStack();
+        
+        System.out.println("\nThe numbers remain in the stack " + array.getSize());
     }
+    
 }
