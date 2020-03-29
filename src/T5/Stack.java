@@ -3,7 +3,7 @@
  */
 package T5;
 
-public class Stack<T> {
+public class Stack<T> implements ADTStack<T>{
     
     private ListNode head;
 
@@ -49,5 +49,10 @@ public class Stack<T> {
                 c = c.getLink();
             }
         }
+    }
+
+    @Override
+    public boolean isFull() {
+        return getSize() >= MAX;
     }
 }
