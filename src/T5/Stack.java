@@ -26,7 +26,7 @@ public class Stack<T> implements ADTStack<T>{
     }
     
     public void push(T t){
-        head = new ListNode(t, head);
+        if(!isFull()) head = new ListNode(t, head);
     }
     
     public T pop(){
@@ -50,7 +50,18 @@ public class Stack<T> implements ADTStack<T>{
             }
         }
     }
-
+    
+    public void showStackReverse(){
+        if(head == null) System.out.println("Empty Stack");
+        else {
+            ListNode c = head;
+            while(c != null){
+                System.out.print(c.toStringReverse());
+                c = c.getLink();
+            }
+        }
+    }
+    
     @Override
     public boolean isFull() {
         return getSize() >= MAX;
