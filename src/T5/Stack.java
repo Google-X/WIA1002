@@ -6,7 +6,10 @@ package T5;
 public class Stack<T> implements ADTStack<T>{
     
     private ListNode head;
-
+    private int leftParentheses = 0;
+    private int rightParentheses = 0;
+    private boolean startWithLeftParentheses = false;
+    
     public Stack() {
         head = null;
     }
@@ -26,7 +29,14 @@ public class Stack<T> implements ADTStack<T>{
     }
     
     public void push(T t){
-        if(!isFull()) head = new ListNode(t, head);
+// For question 2
+//        if(!isFull()) head = new ListNode(t, head);
+        head = new ListNode(t, head);
+        
+// For question 5
+        if(getSize() == 1 && t.equals('(')) startWithLeftParentheses = true;
+        if(t.equals('(')) leftParentheses++;
+        else if(t.equals(')')) rightParentheses++;
     }
     
     public T pop(){
@@ -65,5 +75,13 @@ public class Stack<T> implements ADTStack<T>{
     @Override
     public boolean isFull() {
         return getSize() >= MAX;
+    }
+    
+    public boolean balanceParentheses(){
+        if(startWithLeftParentheses)
+            if(peek().equals(')'))
+                if(leftParentheses == rightParentheses)
+                    return true;
+        return false;
     }
 }
