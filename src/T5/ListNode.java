@@ -38,4 +38,8 @@ public class ListNode<T> {
     public String toString() {
         return " <-- " + data;
     }
+    
+    public String toStringReverse(){
+        return data + " ";
+    }
 }
