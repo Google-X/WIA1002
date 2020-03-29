@@ -15,16 +15,22 @@ The number of elements in the stack is 2
  */
 package T5;
 
+import Lab4.LinkedList;
+
 public class SimpleStackTesterClass {
     public static void main(String[] args) {
         
-        System.out.println("Stack implementation using Stack");
+        System.out.println("Stack implementation using Linked List");
+        
+        LinkedList<Character> li = new LinkedList<>();
+        li.addLastNode('A');
+        li.addLastNode('N');
+        li.addLastNode('D');        
         
         Stack<Character> st = new Stack<>();
-        
-        st.push('A');
-        st.push('N');
-        st.push('D');
+        for(int i=0;i<li.length();i++){
+            st.push(li.get(i));
+        }
         
         System.out.println("Insert three nodes into the stack");
         st.showStack();
