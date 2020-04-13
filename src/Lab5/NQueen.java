@@ -22,10 +22,7 @@ public class NQueen {
                     st.push(c);
                     col[st.getSize()-1] = c;
                     c = 0;
-                } else {
-                    if(st.isEmpty()) break;
-                    c++;
-                }
+                } else c++;
             }
             if(st.getSize() == N) display(st, N);
             if(st.isEmpty()) break;
