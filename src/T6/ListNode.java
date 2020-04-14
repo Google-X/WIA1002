@@ -39,7 +39,13 @@ public class ListNode<T> {
         return data + " --> ";
     }
     
+    // For Tutorial Question 3
     public String toStringCustomer(){
         return data + " set(s) -->\n";
+    }
+    
+    // For Tutorial Question 4
+    public String toStringPalindrome(){
+        return data + "";
     }
 }
