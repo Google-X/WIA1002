@@ -75,4 +75,17 @@ public class Queue<T> {
         }   
     }
     
+    // Tutorial Question 4 showQueue
+    public String showQueuePalindrome(){
+        if(head == null) return null;
+        else {
+            String tmp = "";
+            ListNode c = head;
+            while(c != null){
+                tmp += c.toStringPalindrome();
+                c = c.getLink();
+            }
+            return tmp;
+        }
+    }
 }
