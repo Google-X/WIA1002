@@ -72,6 +72,20 @@ public class Stack<T> implements ADTStack<T>{
         }
     }
     
+    // For Queue Tutorial Question 4
+    public String showStackPalindrome(){
+        if(head == null) return null;
+        else {
+            String tmp = "";
+            ListNode c = head;
+            while(c != null){
+                tmp += c.toStringReverse();
+                c = c.getLink();
+            }
+            return tmp;
+        }
+    }
+    
     @Override
     public boolean isFull() {
         return getSize() >= MAX;
