@@ -60,4 +60,19 @@ public class Queue<T> {
         }   
     }
     
+    // Tutorial Question 3 showQueue
+    public void showQueueCustomer(){
+        if(head == null) System.out.println("EmptyQueueException");
+        else {
+            ListNode c = head;
+            int count = 0;
+            while(c != null){
+                System.out.printf("Customer %d : %s", (count+1), c.toStringCustomer());
+                c = c.getLink();
+                count++;
+            }
+            System.out.println("Number of customer : " + count);
+        }   
+    }
+    
 }
