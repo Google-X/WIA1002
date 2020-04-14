@@ -60,7 +60,7 @@ public class Queue<T> {
         }   
     }
     
-    // Tutorial Question 3 showQueue
+    // Question 3 showQueue
     public void showQueueCustomer(){
         if(head == null) System.out.println("EmptyQueueException");
         else {
@@ -75,7 +75,7 @@ public class Queue<T> {
         }   
     }
     
-    // Tutorial Question 4 showQueue
+    // Question 4 showQueue
     public String showQueuePalindrome(){
         if(head == null) return null;
         else {
@@ -86,6 +86,68 @@ public class Queue<T> {
                 c = c.getLink();
             }
             return tmp;
+        }
+    }
+    
+    // Question 6 methods for reversing
+    public void switchLastQueuer(T t){
+        if(head != null){
+            ListNode c = head;
+            while(c.getLink() != null) c = c.getLink();
+            c.setData(t);
+        } else System.err.println("EmptyLinkedList Exception");
+    }
+    
+    public T getLastQueuer(){
+        if(head != null){
+            ListNode c = head;
+            while(c.getLink() != null) c = c.getLink();
+            return (T) c.getData();
+        } else {
+            System.err.println("EmptyLinkedList Exception");
+            return null;
+        }
+    }
+    
+    public void set(T t, int i){
+        if(i == 0) head.setData(t);
+        else if(i == getSize()-1) switchLastQueuer(t);
+        else if(i >= getSize()) System.err.println("IndexOutOfBound Exception");
+        else {
+            ListNode c = head;
+            for(int j=1;j<=i;j++) c = c.getLink();
+            c.setData(t);
+        }
+    }
+    
+    public T get(int i){
+        if(i == 0) return (T) head.getData();
+        else if(i == getSize()-1) return getLastQueuer();
+        else if(i >= getSize()){
+            System.err.println("IndexOutOfBound Exception");
+            return null;
+        } else {
+            ListNode c = head;
+            for(int j=1;j<=i;j++) c = c.getLink();
+            return (T) c.getData();
+        }
+    }
+    
+    public void reverse(int size){
+        if(getSize()%2 == 0){
+            if(size >= getSize()/2 + 1){
+                T tmp = get(size-1);
+                set(get(getSize()-size), size-1);
+                set(tmp, getSize()-size);
+                reverse(size-1);
+            }
+        } else {
+            if(size > getSize()/2){
+                T tmp = get(size-1);
+                set(get(getSize()-size), size-1);
+                set(tmp, getSize()-size);
+                reverse(size-1);
+            }
         }
     }
 }
