@@ -1,4 +1,4 @@
-/*
+/* QUESTION 4 & 5
  * 4. Write a program to determine whether a string is palindrome. (You can use stack and queue to solve the problem).   
 Example output:
 
