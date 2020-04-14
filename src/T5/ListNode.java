@@ -40,6 +40,6 @@ public class ListNode<T> {
     }
     
     public String toStringReverse(){
-        return data + " ";
+        return data + "";
     }
 }
