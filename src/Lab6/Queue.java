@@ -57,4 +57,18 @@ public class Queue<T> {
             }
         }
     }
+    
+    // Question 4 methods
+    public void showQueueStock(){
+        if(head == null) System.err.println("EmptyQueueException");
+        else {
+            ListNode c = head;
+            while(c != null){
+                System.out.print(c.toStringStock());
+                c = c.getLink();
+            }
+        }
+    }
+    
 }
+    
