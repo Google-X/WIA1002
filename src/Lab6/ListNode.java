@@ -7,7 +7,7 @@ public class ListNode<T> {
     
     private T data;
     private ListNode link;
-
+    
     public ListNode() {
         data = null;
         link = null;
@@ -17,7 +17,7 @@ public class ListNode<T> {
         this.data = data;
         this.link = link;
     }
-
+    
     public T getData() {
         return data;
     }
@@ -38,4 +38,16 @@ public class ListNode<T> {
     public String toString() {
         return data + " --> ";
     }
+    
+    // Question 4 toString()
+    public String toStringStock(){
+        String[] arr = String.valueOf(data).split(" ");
+        
+        String buyOrSell;
+        if(arr[1].equals("B")) buyOrSell = "Buy";
+        else buyOrSell = "Sell";
+        
+        return String.format("Day %s : %s %s shares at RM %s --> \n", arr[0], buyOrSell, arr[2], arr[3]);
+    }
+    
 }
