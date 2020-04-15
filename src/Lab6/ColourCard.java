@@ -53,9 +53,6 @@ public class ColourCard {
         if(p1score > p2score) System.out.println("Player 1 WINS!");
         else if(p2score > p1score) System.out.println("Player 2 WINS!");
         else if(p1score == p2score) System.out.println("It's a tie!");
-        
-        
-        
     }
     
     public static void shuffle(String[] deck){
