@@ -38,7 +38,11 @@ public class DoubleLinkedList<E extends Comparable<E>> {
     }
     
     public void addLeftNode(E e){
+        DoubleListNode c = head;
         head = new DoubleListNode(e, null, head);
+        if(c != null){
+            c.setPreviousLink(head);
+        }
     }
     
     public void addRightNode(E e){
