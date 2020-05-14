@@ -11,6 +11,34 @@ Fib(14): 377
 package T5;
 
 public class Fibonacci {
+    
+    // ANOTHER WAY
+    public static void main(String[] args) {
+        fib(1);
+        fib(5);
+        fib(8);
+        fib(14);
+    }
+    
+    public static void fib(int n) {
+        Stack<Integer> list = new Stack<>();
+
+        int num1 = 1;
+        int num2 = 1;
+        int sum = 1;
+        list.push(num1);
+        list.push(num2);
+
+        for (int i = 2; i < n; i++) {
+            int second = list.pop();
+            sum = second + list.pop();
+            list.push(second);
+            list.push(sum);
+        }
+        System.out.println("Fib(" + n + "): " + sum);
+    }
+    
+    /*
     public static void main(String[] args) {
 
         int[] n = {1, 5, 8, 14};
@@ -54,4 +82,5 @@ public class Fibonacci {
         if(n <= 1) return n;
         return fibo(n-1) + fibo(n-2);
     }
+*/
 }
