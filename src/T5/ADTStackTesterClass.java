@@ -20,7 +20,7 @@ public class ADTStackTesterClass {
         System.out.println("Stack implementation using Array");
         char[] chList = "AND".toCharArray();
         
-        Stack<Character> st = new Stack<>();
+        ArrayStack<Character> st = new ArrayStack<>();
         for(char c : chList) st.push(c);
         
         System.out.println("Insert three nodes into the stack");
