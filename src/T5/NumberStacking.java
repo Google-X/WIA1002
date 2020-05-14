@@ -16,6 +16,25 @@ public class NumberStacking {
         int[] arr = new int[10];
         Stack<Integer> st = new Stack<>();
         
+        // Update from here
+        int even = 0; 
+        int odd = 0; 
+
+        System.out.print("The random numbers are : "); 
+        for(int i = 0; i < arr.length; i++) { 
+            arr[i] = 1 + r.nextInt(100); 
+            System.out.print(arr[i] + " "); 
+            if(arr[i] % 2 == 0) even++; 
+            else odd++; 
+        } 
+
+        int loop = 0; 
+        if(even == odd) loop = arr.length; 
+        else if(even < odd) loop = (even*2) + 1; 
+        else if(odd < even) loop = odd*2; 
+        // To here.
+        
+        /*
         System.out.print("The random numbers are : ");
         for(int i = 0; i < arr.length; i++) {
             arr[i] = 1 + r.nextInt(100);
@@ -46,7 +65,7 @@ public class NumberStacking {
         st.showStack();
         
         System.out.println("\nThe numbers remain in the stack " + st.getSize());
-        
+        */
 // Using array & iterate
         System.out.println("\nUsing array and iteration");
         Stack<Integer> array = new Stack<>();
