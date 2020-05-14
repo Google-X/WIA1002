@@ -3,7 +3,7 @@
  */
 package T5;
 
-public class Stack<T> implements ADTStack<T>{
+public class Stack<T>{
     
     private ListNode head;
     private int leftParentheses = 0;
@@ -29,8 +29,6 @@ public class Stack<T> implements ADTStack<T>{
     }
     
     public void push(T t){
-// For question 2
-//        if(!isFull()) head = new ListNode(t, head);
         head = new ListNode(t, head);
         
 // For question 5
@@ -84,11 +82,6 @@ public class Stack<T> implements ADTStack<T>{
             }
             return tmp;
         }
-    }
-    
-    @Override
-    public boolean isFull() {
-        return getSize() >= MAX;
     }
     
     public boolean balanceParentheses(){
