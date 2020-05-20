@@ -19,7 +19,7 @@ public class BST<T extends Comparable<T>> {
         return getSize(root);
     }
     
-    public int getSize(BSTNode<T> a){
+    private int getSize(BSTNode<T> a){
         if(a == null) return 0;
         else return getSize(a.getLeft()) + getSize(a.getRight()) + 1;
     }
@@ -28,7 +28,7 @@ public class BST<T extends Comparable<T>> {
         return find(root, t);
     }
     
-    public boolean find(BSTNode<T> a, T t){
+    private boolean find(BSTNode<T> a, T t){
         if(a == null) return false;
         else if(t.compareTo(a.getData()) < 0)
             return find(a.getLeft(), t);
@@ -41,7 +41,7 @@ public class BST<T extends Comparable<T>> {
         return (T) getElement(root, t);
     }
     
-    public T getElement(BSTNode<T> a, T t){
+    private T getElement(BSTNode<T> a, T t){
         if(a == null) return null;
         else if(t.compareTo(a.getData()) < 0)
             return (T) getElement(a.getLeft(), t);
@@ -55,7 +55,7 @@ public class BST<T extends Comparable<T>> {
         root = add(root, t);
     }
     
-    public BSTNode<T> add(BSTNode<T> a, T t){
+    private BSTNode<T> add(BSTNode<T> a, T t){
         if(a == null) a = new BSTNode(t, null, null);
         else if(t.compareTo(a.getData()) <= 0)
             a.setLeft(add(a.getLeft(), t));
@@ -72,7 +72,7 @@ public class BST<T extends Comparable<T>> {
         return found;
     }
     
-    public BSTNode<T> remove(BSTNode<T> a, T t){
+    private BSTNode<T> remove(BSTNode<T> a, T t){
         if(a == null) found = false;
         else if(t.compareTo(a.getData()) < 0)
             a.setLeft(remove(a.getLeft(), t));
@@ -85,7 +85,7 @@ public class BST<T extends Comparable<T>> {
         return a;
     }
     
-    public BSTNode<T> removeNode(BSTNode<T> a){
+    private BSTNode<T> removeNode(BSTNode<T> a){
         if(a.getLeft() == null) return a.getRight();
         else if(a.getRight() == null) return a.getLeft();
         else {
@@ -96,7 +96,7 @@ public class BST<T extends Comparable<T>> {
         }
     }
     
-    public T getPredecessor(BSTNode<T> a){
+    private T getPredecessor(BSTNode<T> a){
         while(a.getRight() != null) a = a.getRight();
         return a.getData();
     }
@@ -120,7 +120,7 @@ public class BST<T extends Comparable<T>> {
         else postOrder(root);
     }
     
-    public void inOrder(BSTNode<T> a){
+    private void inOrder(BSTNode<T> a){
         if(a != null){
             inOrder(a.getLeft());
             Q.enqueue(a.getData());
@@ -128,7 +128,7 @@ public class BST<T extends Comparable<T>> {
         }
     }
     
-    public void preOrder(BSTNode<T> a){
+    private void preOrder(BSTNode<T> a){
         if(a != null){
             Q.enqueue(a.getData());
             preOrder(a.getLeft());
@@ -136,7 +136,7 @@ public class BST<T extends Comparable<T>> {
         }
     }
     
-    public void postOrder(BSTNode<T> a){
+    private void postOrder(BSTNode<T> a){
         if(a != null){
             postOrder(a.getLeft());
             postOrder(a.getRight());
@@ -154,7 +154,7 @@ public class BST<T extends Comparable<T>> {
         insertBalanceTree(data, 0, size-1);
     }
     
-    public void insertBalanceTree(T[] t, int low, int high){
+    private void insertBalanceTree(T[] t, int low, int high){
         if(low == high) this.addNode(t[low]);
         else if((low + 1) == high){
             this.addNode(t[low]);
