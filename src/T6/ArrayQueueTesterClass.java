@@ -46,5 +46,7 @@ public class ArrayQueueTesterClass {
         ArrQ.enqueue('E');
         
         ArrQ.showQueue();
+        System.out.println("");
+        ArrQ.showQueueV2();
     }
 }
