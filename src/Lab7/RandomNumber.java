@@ -39,8 +39,19 @@ public class RandomNumber {
         }
         
         System.out.println("\nThe number of elements in the tree : " + bst.getSize());
+        System.out.print("The tree elements - PREORDER : ");
+        bst.setOrder(BST.PREORDER);
+        bst.showTree();
         
-        System.out.println("The minimum number is : " + bst.getMin());
+        System.out.print("\nThe tree elements - INORDER : ");
+        bst.setOrder(BST.INORDER);
+        bst.showTree();
+        
+        System.out.print("\nThe tree elements - POSTORDER : ");
+        bst.setOrder(BST.POSTORDER);
+        bst.showTree();
+        
+        System.out.println("\n\nThe minimum number is : " + bst.getMin());
         System.out.println("The maximum number is : " + bst.getMax());
         System.out.println("The total number is : " + bst.total());
         System.out.print("Enter a number to search : ");
