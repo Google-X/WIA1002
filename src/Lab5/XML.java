@@ -69,10 +69,103 @@ public class XML {
                 }
             }
         }
-        System.out.println("The xml document 1s valid.");
+        System.out.println("The xml document is valid.");
     }
     
 }
+
+/*
+import java.io.*; 
+import java.util.Stack; 
+
+public class XML { 
+    public static void main(String[] args) throws IOException { 
+        String[] filePaths = {"src\\test.xml", "src\\test1.xml", "src\\test2.xml", "src\\test3.xml"}; 
+
+        for (String filePath : filePaths) { 
+            File file = new File(filePath); 
+            String contents = ""; 
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) { 
+                for (String line = br.readLine(); line != null; line = br.readLine()) { 
+                    // use trim() to remove whitespaces 
+                    contents += line.trim() + "\n"; 
+                } 
+            } 
+
+            System.out.println("Contents of XML file"); 
+            System.out.println(contents); 
+            parseXML(contents); 
+            System.out.println(); 
+        } 
+    } 
+
+    private static void parseXML(String xml) { 
+        // immediate eliminate of corner case 
+        if (xml.charAt(0) != '<') { 
+            System.out.println("Invalid XML starting element"); 
+            return; 
+        } 
+
+        Stack<String> stack = new Stack<>(); 
+        int i = 0; 
+
+        while (i < xml.length()) { 
+            if (xml.charAt(i) == '<') { 
+                i++; 
+                if (xml.charAt(i) == '/') { 
+                    // closing tag 
+                    String close = ""; 
+                    i++; 
+
+                    // concat tagName 
+                    for (char c = xml.charAt(i); c != '>'; c = xml.charAt(++i)) { 
+                        close += c; 
+                    } 
+
+                    if (close.length() == 0) { 
+                        System.out.println("Empty Closing Tag!"); 
+                        return; 
+                    } 
+
+                    if (stack.isEmpty()) { 
+                        System.out.printf("No Begin Element! Invalid ending element : </%s>\n", close); 
+                        return; 
+                    } 
+
+                    String begin = stack.pop(); 
+                    if (!begin.equals(close)) { 
+                        System.out.printf("Begin element : <%s> Invalid ending element : </%s>\n", begin, close); 
+                        return; 
+                    } 
+  
+                } else { 
+                    // opening tag 
+                    String begin = ""; 
+
+                    // concat tagName 
+                    for (char c = xml.charAt(i); c != '>'; c = xml.charAt(++i)) { 
+                        begin += c; 
+                    } 
+                    if (begin.length() == 0) { 
+                        System.out.println("Empty Opening Tag!"); 
+                        return ; 
+                    } 
+
+                    if (!stack.isEmpty() && stack.peek().equals(begin)) { 
+                        System.out.printf("Duplicate root element <%s>\n", begin); 
+                        return; 
+                    } 
+
+                    stack.push(begin); 
+                } 
+            } 
+            i++; 
+        } 
+        System.out.println("The xml document is valid."); 
+    } 
+} 
+*/
+
 /*
 Example output:
 Contents of XML file 
