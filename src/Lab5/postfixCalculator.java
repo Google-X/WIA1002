@@ -22,13 +22,14 @@ public class postfixCalculator {
     }
     
     public static String replaceAll(String a){
-        a = a.replaceAll("ob", "(");
-        a = a.replaceAll("cb", ")");
-        a = a.replaceAll("add", "+");
-        a = a.replaceAll("sub", "-");
-        a = a.replaceAll("mul", "*");
-        a = a.replaceAll("div", "/");
-        a = a.replaceAll("mod", "%");
+        
+        a = a.replaceAll("ob", "(")
+             .replaceAll("cb", ")") 
+             .replaceAll("add", "+") 
+             .replaceAll("sub", "-") 
+             .replaceAll("mul", "*") 
+             .replaceAll("div", "/") 
+             .replaceAll("mod", "%"); 
         return a;
     }
     
