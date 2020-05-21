@@ -67,9 +67,6 @@ public class StatementEvaluation {
                 System.out.println("^ Missing " + close[getIndex(st.peek())]);
             }
         }
-        
-        
-        
     }
     
     public static boolean checkOpenParenthesis(char c){
