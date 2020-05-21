@@ -14,8 +14,6 @@ package T6;
 
 public interface ArrayQueueADT<T> {
     
-    final int MAX = 10;
-    
     public boolean isEmpty();
     public boolean isFull();
     public int getSize();   
