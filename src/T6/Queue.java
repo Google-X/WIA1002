@@ -1,5 +1,5 @@
 /*
- * Queue class
+ * Queue class change commit
  */
 package T6;
 
