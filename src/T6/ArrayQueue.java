@@ -29,7 +29,7 @@ public class ArrayQueue<T> implements ArrayQueueADT<T>{
     public void enqueue(T t) {
         if(!isFull()){
             arr[rear] = t;
-            rear = ++rear%size;
+            rear = ++rear%size; // during enqueue, ensure that the position is always within [0, MAX_SIZE-1]
             currentSize++;
         } else {
             System.out.println("Queue is full.");
@@ -42,7 +42,8 @@ public class ArrayQueue<T> implements ArrayQueueADT<T>{
             return null;
         } else {
             T temp = arr[front];
-            front = ++front%size;
+            arr[front] = null; // <-- Necessary?
+            front = ++front%size; // during dequeue, ensure that the position is always within [0, MAX_SIZE-1]
             currentSize--;
             return temp;
         }
@@ -61,4 +62,23 @@ public class ArrayQueue<T> implements ArrayQueueADT<T>{
             for(int i = 0; i < currentSize; i++)
                 System.out.print(arr[(front+i)%size] + " --> ");
     }
+    
+    /*
+    if rear >= front, then we will just use a single for loop to display everything (as usual).
+    else if rear < front (as like our example), we can use TWO for loops. 
+    First for loop display items from front position to MAX_SIZE-1, and second for loop display items from 0 to rear position.
+    */
+    public void showQueueV2() {
+        if(isEmpty()) System.out.println("EmptyQueueException");
+        else {
+            if(front < rear){
+                for(int i = front; i < rear; i++) System.out.print(arr[i] + " --> ");
+            }
+            else {
+                for(int i = front; i <= size-1; i++) System.out.print(arr[i] + " --> ");
+                for(int i = 0; i < rear; i++) System.out.print(arr[i] + " --> ");
+            } 
+        }
+    }
+    
 }
