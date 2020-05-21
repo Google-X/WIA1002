@@ -10,6 +10,7 @@ public class NQueen {
     public static void main(String[] args) {
         System.out.println("Solving the N Queens problem");
         
+        int solution = 0;
         int N = 4;
         int c = 0;
         col = new int[N];
@@ -24,10 +25,15 @@ public class NQueen {
                     c = 0;
                 } else c++;
             }
-            if(st.getSize() == N) display(st, N);
+            if(st.getSize() == N) {
+                display(st, N);
+                solution++;
+            }
             if(st.isEmpty()) break;
             c = st.pop()+1;
         }
+        
+        System.out.println("The number of solutions are : " + solution);
         
     }
     
@@ -82,4 +88,6 @@ Example output:
     * * * Q
     Q * * *
     * * Q *
+
+    The number of solutions are : 2
 */
