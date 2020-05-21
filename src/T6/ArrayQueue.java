@@ -4,65 +4,61 @@
 package T6;
 
 public class ArrayQueue<T> implements ArrayQueueADT<T>{
-
-    private ListNode head;
+    
+    private static final int size = 10;
+    private T[] arr;
+    private int currentSize = 0;
+    private int front = 0, rear = 0;
 
     public ArrayQueue() {
-        head = null;
+        arr = (T[]) new Object[size];
     }
     
     public boolean isEmpty() {
-        return head == null;
+        return currentSize == 0;
     }
     
     public boolean isFull() {
-        return getSize() == MAX;
+        return currentSize == size;
     }
     
     public int getSize() {
-        int i = 0;
-        ListNode c = head;
-        while(c != null){
-            i++;
-            c = c.getLink();
-        }
-        return i;
+        return currentSize;
     }
     
     public void enqueue(T t) {
         if(!isFull()){
-            ListNode n = new ListNode(t, null);
-            if(head == null) head = n;
-            else {
-                ListNode c = head;
-                while(c.getLink() != null) c = c.getLink();
-                c.setLink(n);
-            }
+            arr[rear] = t;
+            rear = ++rear%size;
+            currentSize++;
         } else {
-            System.out.println("Cannot queue currently. Queue is full.");
+            System.out.println("Queue is full.");
         }
     }
     
     public T dequeue() {
-        if(head == null) return null;
-        T t = (T) head.getData();
-        head = head.getLink();
-        return t;
+        if(isEmpty()) {
+            System.out.println("The queue is empty");
+            return null;
+        } else {
+            T temp = arr[front];
+            front = ++front%size;
+            currentSize--;
+            return temp;
+        }
     }
     
     public T peek() {
-        if(head == null) return null;
-        return (T) head.getData();
+        if(isEmpty()) {
+            System.out.println("The queue is empty");
+            return null;
+        } else return arr[front];
     }
     
     public void showQueue() {
-        if(head == null) System.out.println("EmptyQueueException");
-        else {
-            ListNode c = head;
-            while(c != null){
-                System.out.print(c.toString());
-                c = c.getLink();
-            }
-        }
+        if(isEmpty()) System.out.println("EmptyQueueException");
+        else 
+            for(int i = 0; i < currentSize; i++)
+                System.out.print(arr[(front+i)%size] + " --> ");
     }
 }
