@@ -11,9 +11,25 @@ import java.util.Random;
 public class MYPhone {
     public static void main(String[] args) {
         
-        int MAX = 30;
+        int total = 0, count = 1;
         Random r = new Random();
         
+        Queue<String> customer = new Queue<>();
+        
+        while(total < 30){
+            int num = 1 + r.nextInt(3);
+            if(total + num <= 30) {
+                customer.enqueue("\nCustomer " + count + " : " + num + " (sets) ");
+                total += num;
+                count++;
+            }
+        }
+        
+        System.out.println("Simulating a Queue to purchase MY phone");
+        customer.showQueue();
+        System.out.println("\nNumber of customer : " + customer.getSize());
+        
+        /* OLD VERSION USELESS TROUBLESOME
         Queue<Integer> customer = new Queue<>();
         
         while(MAX > 0){
@@ -26,7 +42,7 @@ public class MYPhone {
         
         System.out.println("Simulating a Queue to purchase MY phone");
         customer.showQueueCustomer();
-        
+        */
     }
 }
 
