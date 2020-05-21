@@ -2,7 +2,7 @@
  * 3. Write a Program to simulate a queue when purchasing a new MY phone. Given each customer can purchase 1 – 3 sets of MY phone. The number of MY phone available is 30.
 
 Example output at bottom
-
+[CHANGES COMMIT MSG]
  */
 package T6;
 
