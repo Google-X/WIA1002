@@ -61,6 +61,7 @@ public class Queue<T> {
     }
     
     // Question 3 showQueue
+    /*
     public void showQueueCustomer(){
         if(head == null) System.out.println("EmptyQueueException");
         else {
@@ -73,7 +74,7 @@ public class Queue<T> {
             }
             System.out.println("Number of customer : " + count);
         }   
-    }
+    }*/
     
     // Question 4 showQueue
     public String showQueuePalindrome(){
@@ -133,6 +134,7 @@ public class Queue<T> {
         }
     }
     
+    // Another way is simply dequeue the first queue and enqueue the dequeued item to the new queue. [EASIER] NEED CHANGE
     public void reverse(int size){
         if(getSize()%2 == 0){
             if(size >= getSize()/2 + 1){
