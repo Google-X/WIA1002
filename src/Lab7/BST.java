@@ -208,4 +208,21 @@ public class BST<T extends Comparable<T>> {
             return numberCount(a.getLeft(), t);
         }
     }
+    
+    // WORD FREQUENCY GENERATOR
+    public void wordCounter(){
+        System.out.println("Word Frequency Generator Program");
+        setOrder(BST.INORDER);
+        int cnt = 1;
+        while(!Q.isEmpty()){
+            T tmp = Q.dequeue();
+            if(!Q.isEmpty()){
+                if(tmp.compareTo(Q.peek()) == 0) cnt++;
+                else {
+                    System.out.printf("%04d %s -->\n", cnt, tmp);
+                    cnt = 1;
+                }
+            }
+        }
+    }
 }
