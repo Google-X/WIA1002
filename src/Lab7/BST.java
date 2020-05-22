@@ -171,24 +171,15 @@ public class BST<T extends Comparable<T>> {
     // Question 1 methods
     // TO GET MINIMUM
     public T getMin(){
-        setOrder(INORDER);
-        return Q.peek();
-    }
-    
-    // TO GET MAXIMUM
-    private Stack<T> st;
-    private void inOrderStack(BSTNode<T> a){
-        if(a != null){
-            inOrderStack(a.getLeft());
-            st.push(a.getData());
-            inOrderStack(a.getRight());
-        }
+        BSTNode<T> tmp = root;
+        while(tmp.getLeft() != null) tmp = tmp.getLeft();
+        return tmp.getData();
     }
     
     public T getMax(){
-        st = new Stack<>();
-        inOrderStack(root);
-        return st.peek();
+        BSTNode<T> tmp = root;
+        while(tmp.getRight() != null) tmp = tmp.getRight();
+        return tmp.getData();
     }
     
     // TO GET TOTAL VALUE
@@ -200,11 +191,21 @@ public class BST<T extends Comparable<T>> {
     }
     
     // TO COUNT THE NUMBER OF OCCURANCE
+    private static int cnt;
     public int numberCount(T t){
-        setOrder(INORDER);
-        int counter = 0;
-        while(!Q.isEmpty()) if(t.compareTo(Q.dequeue()) == 0) counter++;
-        return counter;
+        cnt = 0;
+        return numberCount(root, t);
     }
     
+    private int numberCount(BSTNode<T> a, T t){
+        if(a == null) return cnt;
+        else if(t.compareTo(a.getData()) < 0)
+            return numberCount(a.getLeft(), t);
+        else if(t.compareTo(a.getData()) > 0)
+            return numberCount(a.getRight(), t);
+        else {
+            cnt++;
+            return numberCount(a.getLeft(), t);
+        }
+    }
 }
