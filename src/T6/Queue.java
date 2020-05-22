@@ -24,42 +24,48 @@ public class Queue<T> {
         }
         return i;
     }
-    
-    public void enqueue(T t){
+
+    public void enqueue(T t) {
         ListNode n = new ListNode(t, null);
-        if(head == null) head = n;
-        else {
+        if (head == null) {
+            head = n;
+        } else {
             ListNode c = head;
-            while(c.getLink() != null){
+            while (c.getLink() != null) {
                 c = c.getLink();
             }
             c.setLink(n);
         }
     }
-    
-    public T dequeue(){
-        if(head == null) return null;
+
+    public T dequeue() {
+        if (head == null) {
+            return null;
+        }
         T t = (T) head.getData();
         head = head.getLink();
         return t;
     }
-    
-    public T peek(){
-        if(head == null) return null;
+
+    public T peek() {
+        if (head == null) {
+            return null;
+        }
         return (T) head.getData();
     }
-    
-    public void showQueue(){
-        if(head == null) System.out.println("EmptyQueueException");
-        else {
+
+    public void showQueue() {
+        if (head == null) {
+            System.out.println("EmptyQueueException");
+        } else {
             ListNode c = head;
-            while(c != null){
+            while (c != null) {
                 System.out.print(c.toString());
                 c = c.getLink();
             }
-        }   
+        }
     }
-    
+
     // Question 3 showQueue
     /*
     public void showQueueCustomer(){
@@ -75,14 +81,14 @@ public class Queue<T> {
             System.out.println("Number of customer : " + count);
         }   
     }*/
-    
     // Question 4 showQueue
-    public String showQueuePalindrome(){
-        if(head == null) return null;
-        else {
+    public String showQueuePalindrome() {
+        if (head == null) {
+            return null;
+        } else {
             String tmp = "";
             ListNode c = head;
-            while(c != null){
+            while (c != null) {
                 tmp += c.toStringPalindrome();
                 c = c.getLink();
             }
@@ -90,7 +96,18 @@ public class Queue<T> {
         }
     }
     
+    // USING RECURSION FOR T6Q6
+    public void reverseQueue() {
+        if (!isEmpty()) {
+            T data = peek();
+            dequeue();
+            reverseQueue();
+            enqueue(data);
+        }
+    }
+
     // Question 6 methods for reversing
+    /* WHERE I BUY A NEW BRAIN?? SIMPLE METHOD ABOVE BY DR ONG
     public void switchLastQueuer(T t){
         if(head != null){
             ListNode c = head;
@@ -152,4 +169,5 @@ public class Queue<T> {
             }
         }
     }
+     */
 }
