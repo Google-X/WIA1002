@@ -23,12 +23,11 @@ public class WordFrequency {
 
         try (BufferedReader s = new BufferedReader(new FileReader(file))) {
             for (String line = s.readLine(); line != null; line = s.readLine()) {
-                // use trim() to remove whitespaces 
                 str += line + "\n";
             }
         }
         
-        str = str.replaceAll("[^a-zA-Z0-9\\s+]", "");
+        str = str.replaceAll("[^a-zA-Z0-9\\s+]", "").replaceAll("\\n", "");
         System.out.println(str);
 
         String[] word = str.split(" ");
