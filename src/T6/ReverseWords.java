@@ -25,7 +25,8 @@ public class ReverseWords {
         System.out.print("The original queue : ");
         Q.showQueue();
         
-        Q.reverse(Q.getSize());
+//        Q.reverse(Q.getSize());
+        Q.reverseQueue();
         System.out.print("\nReverse all the elements in the queue : ");
         Q.showQueue();
         System.out.println();
