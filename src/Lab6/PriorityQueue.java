@@ -3,8 +3,8 @@
  */
 package Lab6;
 
-public class PriorityQueue<T> {
-    private ListNode head;
+public class PriorityQueue<T extends Packet>{
+    private PriorityQListNode head;
 
     public PriorityQueue() {
         head = null;
@@ -16,7 +16,7 @@ public class PriorityQueue<T> {
     
     public int getSize(){
         int i = 0;
-        ListNode c = head;
+        PriorityQListNode c = head;
         while(c != null){
             i++;
             c = c.getLink();
@@ -24,29 +24,30 @@ public class PriorityQueue<T> {
         return i;
     }
     
-    public void enqueue(T t, int priority){
-        ListNode n = new ListNode(t, null);
+    public void enqueuePriority(T t){
+        PriorityQListNode n = new PriorityQListNode(t, null);
         if(head == null) head = n;
         else {
-            PriorityQueue<String> tmp = new PriorityQueue<>();
-            ListNode c = head;
+            PriorityQueue<T> tmp = new PriorityQueue<>();
+            PriorityQListNode c = head;
             
             // Comparing the queue priority
-            while(!isEmpty() && Integer.parseInt(String.valueOf((peek().charAt(peek().length()-2)))) >= priority) {
-                tmp.enqueue((String)dequeue());
+            // compareTo() here or at the Packet Class(need to extend Comparable)
+            while(!isEmpty() && peek().getPriority() >= t.getPriority()) {
+                tmp.enqueue(dequeue());
             }
             
-            tmp.enqueue((String)t); // Inserting the VIP queuer
-            while(!isEmpty()) tmp.enqueue((String)dequeue()); // move the remaining queuer to the new Queue
-            while(!tmp.isEmpty()) enqueue((T)tmp.dequeue()); // move all the sorted Queue back into the original Queue
+            tmp.enqueue(t); // Inserting the VIP queuer
+            while(!isEmpty()) tmp.enqueue(dequeue()); // move the remaining queuer to the new Queue
+            while(!tmp.isEmpty()) enqueue(tmp.dequeue()); // move all the sorted Queue back into the original Queue
         }
     }
     
-    public void enqueue(T t){
-        ListNode n = new ListNode(t, null);
+    private void enqueue(T t){
+        PriorityQListNode n = new PriorityQListNode(t, null);
         if(head == null) head = n;
         else {
-            ListNode c = head;
+            PriorityQListNode c = head;
             while(c.getLink() != null) c = c.getLink();
             c.setLink(n);
         }
@@ -59,17 +60,17 @@ public class PriorityQueue<T> {
         return t;
     }
     
-    public String peek(){
+    public T peek(){
         if(head == null) return null;
-        return (String) head.getData();
+        return (T) head.getData();
     }
     
     public void showQueue(){
         if(head == null) System.err.println("EmptyQueueException");
         else {
-            ListNode c = head;
+            PriorityQListNode c = head;
             while(c != null){
-                System.out.print(c.toStringNetwork());
+                System.out.println(c.getData().getDataType() + " " + c.getData().getOrder() + " (Priority=" + c.getData().getPriority() + ')');
                 c = c.getLink();
             }
         }
