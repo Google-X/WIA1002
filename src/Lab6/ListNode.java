@@ -49,9 +49,4 @@ public class ListNode<T> {
         
         return String.format("Day %s : %s %s shares at RM %s --> \n", arr[0], buyOrSell, arr[2], arr[3]);
     }
-    
-    // Question 5 toString()
-    public String toStringNetwork() {
-        return data + "\n";
-    }
 }
