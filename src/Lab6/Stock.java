@@ -65,15 +65,18 @@ public class Stock {
                 int soldAmt = stockNum[i];
                 int soldPrice = price[i];
                 for(int j = 0; j < i; j++){
-                    if(stockNum[j] <= soldAmt){
-                        int tmp = stockNum[j];
-                        soldAmt -= stockNum[j];
-                        stockNum[j] = 0;
-                        total += tmp * (soldPrice - price[j]);
-                    } else {
-                        stockNum[j] -= soldAmt;
-                        total += soldAmt * (soldPrice - price[j]);
-                        soldAmt = 0;
+                    if(soldAmt == 0) break;
+                    else {
+                        if(stockNum[j] <= soldAmt){
+                            int tmp = stockNum[j];
+                            soldAmt -= stockNum[j];
+                            stockNum[j] = 0;
+                            total += tmp * (soldPrice - price[j]);
+                        } else {
+                            stockNum[j] -= soldAmt;
+                            total += soldAmt * (soldPrice - price[j]);
+                            soldAmt = 0;
+                        }
                     }
                 }
             }
