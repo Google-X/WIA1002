@@ -8,49 +8,44 @@ package Lab6;
 import java.util.Random;
 
 public class Packet {
-    public static void main(String[] args) {
-        
-        Random r = new Random();
-        String[] type = {"Data", "Video", "Voice"};
-        
-        int num = 1 + r.nextInt(100);
-        System.out.println(num + " packets arrived");
-        
-        PriorityQueue<String> Q = new PriorityQueue<>();
-        for(int i = 0; i < num; i++){
-            int n = r.nextInt(type.length);
-            String tmp = type[n] + " " + (i+1) + " (Priority=" + n + ')';
-            Q.enqueue(tmp, n);
-            System.out.println(tmp);
-        }
-        
-        System.out.printf("\nProcessing %d network packets\n", num);
-        Q.showQueue();
+    
+    private Random r = new Random();
+    private String dataType;
+    private int priority;
+    private int order;
+    private String[] packet = {"Data", "Video", "Voice"};
+    
+    public Packet(int order){
+        dataType = packet[r.nextInt(packet.length)];
+        this.order = order;
+        setPriority();
     }
-}
-/*
-Example output:
-10 packets arrived
-Video 1 (Priority=1)
-Voice 2 (Priority=2)
-Data 3 (Priority=0)
-Data 4 (Priority=0)
-Voice 5 (Priority=2)
-Video 6 (Priority=1)
-Voice 7 (Priority=2)
-Voice 8 (Priority=2)
-Data 9 (Priority=0)
-Video 10 (Priority=1)
 
-Processing 10 network packets
-Voice 2 (Priority=2)
-Voice 5 (Priority=2)
-Voice 6 (Priority=2)
-Voice 7 (Priority=2)
-Video 1 (Priority=1)
-Video 6 (Priority=1)
-Video 10 (Priority=1)
-Data 3 (Priority=0)
-Data 4 (Priority=0)
-Data 9 (Priority=0)
-*/
+    public String getDataType() {
+        return dataType;
+    }
+    
+    public int getPriority() {
+        return priority;
+    }
+    
+    public int getOrder() {
+        return order;
+    }
+    
+    private void setPriority() {
+        switch(dataType){
+            case "Data":
+                priority = 0;
+                break;
+            case "Video":
+                priority = 1;
+                break;
+            case "Voice":
+                priority = 2;
+                break;
+            default:
+        }
+    }
+    
+}
