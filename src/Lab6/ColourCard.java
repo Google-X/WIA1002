@@ -15,7 +15,7 @@ Player 2 WINS!
  */
 package Lab6;
 
-public class ColourCard<T extends Comparable<T>>{
+public class ColourCard {
     
     private String card;
     private String colour;
