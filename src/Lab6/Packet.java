@@ -48,4 +48,8 @@ public class Packet {
         }
     }
     
+    public String toString(){
+        return String.format("%s %d (Priority=%d)", dataType, order, priority);
+    }
+    
 }
