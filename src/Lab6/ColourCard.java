@@ -42,7 +42,7 @@ public class ColourCard {
     public boolean compareTo(ColourCard card){
         if(colour.compareTo(card.getColour()) < 0) return true;
         else if (colour.compareTo(card.getColour()) == 0){
-            if(num > card.getNum()) return true;
+            return num > card.getNum();
         }
         return false;
     }
