@@ -18,7 +18,7 @@ public class PacketTesterClass {
         System.out.println(num + " packet(s) arrived");
         for(int i = 0; i < list.length; i++) {
             list[i] = new Packet(i+1);
-            System.out.println(list[i].getDataType() + " " + list[i].getOrder() + " (Priority=" + list[i].getPriority() + ')');
+            System.out.println(list[i].toString());
         }
         
         PriorityQueue<Packet> Q = new PriorityQueue<>();
