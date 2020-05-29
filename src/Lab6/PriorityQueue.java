@@ -70,7 +70,7 @@ public class PriorityQueue<T extends Packet>{
         else {
             PriorityQListNode c = head;
             while(c != null){
-                System.out.println(c.getData().getDataType() + " " + c.getData().getOrder() + " (Priority=" + c.getData().getPriority() + ')');
+                System.out.println(c.getData().toString());
                 c = c.getLink();
             }
         }
