@@ -16,14 +16,14 @@ Withdraw 120            New Balance 1130
 package Lab6;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Transaction {
     public static void main(String[] args) {
         
         Scanner s = new Scanner(System.in);
         System.out.print("Enter transactions : ");
-        String[] t = s.nextLine().split(Pattern.quote(" | "));
+        String transaction = s.nextLine().replaceAll("\\s+", "");
+        String[] t = transaction.split("\\|");
         
         Queue<String> Q = new Queue<>();
         for(String st : t) Q.enqueue(st);
@@ -35,13 +35,13 @@ public class Transaction {
         int Qsize = Q.getSize();
         
         for(int i = 0; i < Qsize; i++){
-            String[] tmp = Q.dequeue().split(" ");
-            int val = Integer.parseInt(tmp[1]);
+            String tmp = Q.dequeue();
+            int val = Integer.parseInt(tmp.substring(1));
             
-            if(tmp[0].equals("D")){
+            if(tmp.charAt(0) == 'D'){
                 bal += val;
                 System.out.printf("Deposit %d\t\tNew Balance %d\n", val, bal);
-            } else if (tmp[0].equals("W")){
+            } else if (tmp.charAt(0) == 'W'){
                 if(bal - val < 0){
                     System.out.printf("Withdraw %d Rejected\tNew Balance %d\n", val, bal);
                 } else {
@@ -50,6 +50,5 @@ public class Transaction {
                 }
             }
         }
-        
     }
 }
