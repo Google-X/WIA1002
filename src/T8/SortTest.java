@@ -6,7 +6,6 @@
 package T8;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class SortTest<T extends Comparable<T>> {
 
@@ -23,19 +22,37 @@ public class SortTest<T extends Comparable<T>> {
         value = (T[]) new Comparable[SIZE];
         char c;
 
-        if (t instanceof Number) this.MaxValue = MaxValue;
+        if (t instanceof Number || t instanceof String) this.MaxValue = MaxValue;
 
         for (int i = 0; i < SIZE; i++) {
             if (t instanceof Integer) {
                 value[i] = (T) ((Integer) r.nextInt(MaxValue));
-            } else if (t instanceof Double) {
+            } 
+            else if (t instanceof Double) {
                 value[i] = (T) ((Double) (0.01 * r.nextInt(MaxValue)));
-            } else if (t instanceof Character){
-                c = (char)('A' + r.nextInt(MAXCHAR));
+            } 
+            else if (t instanceof Character){
+                if(Character.isUpperCase((Character)t)) c = (char)('A' + r.nextInt(MAXCHAR));
+                else c = (char)('a' + r.nextInt(MAXCHAR));
                 value[i] = (T) ((Character) c);
+            } 
+            else if (t instanceof String){
+                String tmp = "";
+                if(Character.isUpperCase((Character)((String) t).charAt(0))){
+                    for(int j = 0; j < this.MaxValue; j++){
+                        c = (char)('A' + r.nextInt(MAXCHAR));
+                        tmp += c;
+                    }
+                }
+                else {
+                    for(int j = 0; j < this.MaxValue; j++){
+                        c = (char)('a' + r.nextInt(MAXCHAR));
+                        tmp += c;
+                    }
+                }
+                value[i] = (T) tmp;
             } else {
-                c = (char)('A' + r.nextInt(MAXCHAR));
-                value[i] = (T) (c + "");
+                System.out.println("Will update soon.");
             }
         }
     }
