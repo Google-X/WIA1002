@@ -63,7 +63,7 @@ public class SimpleSorting {
     }
     
     public static SortTest getSorter(){
-        SortTest sorter = new SortTest('a', 10, 0, false);
+        SortTest sorter = new SortTest('A', 10, 0, false);
         System.out.print("The random characters are : ");
         sorter.showValue();
         return sorter;
