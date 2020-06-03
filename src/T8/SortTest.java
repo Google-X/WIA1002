@@ -15,20 +15,15 @@ public class SortTest<T extends Comparable<T>> {
     private int MaxValue;
     private int SIZE;
     private T[] value;
-    private Scanner s = new Scanner(System.in);
     private Random r = new Random();
 
-    public SortTest(boolean ascending, T t) {
-        System.out.print("Size : ");
-        setSIZE(s.nextInt());
+    public SortTest(T t, int SIZE, int MaxValue, boolean ascending) {
+        this.SIZE = SIZE;
         ASCENDING = ascending;
         value = (T[]) new Comparable[SIZE];
         char c;
 
-        if (t instanceof Number) {
-            System.out.print("Max value to be generated: ");
-            setMaxValueToGenerate(s.nextInt());
-        }
+        if (t instanceof Number) this.MaxValue = MaxValue;
 
         for (int i = 0; i < SIZE; i++) {
             if (t instanceof Integer) {
@@ -44,15 +39,11 @@ public class SortTest<T extends Comparable<T>> {
             }
         }
     }
-
-    public void setMaxValueToGenerate(int MaxValue) {
-        this.MaxValue = MaxValue;
-    }
-
-    public void setSIZE(int SIZE) {
-        this.SIZE = SIZE;
-    }
     
+    public void setAscending(boolean ascending){
+        ASCENDING = ascending;
+    }
+
     public boolean isSorted(){
         for(int i = 0; i < value.length-1; i++){
             if(value[i].compareTo(value[i+1]) > 0 && ASCENDING) return false;
