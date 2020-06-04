@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Sorter with list of sorting methods: Quick Sort, Insertion Sort, Merge Sort, Bubble Sort, Selection Sort.
  */
 package T8;
 
@@ -24,12 +22,12 @@ public class SortTest<T extends Comparable<T>> {
 
         if (t instanceof Number || t instanceof String) this.MaxValue = MaxValue;
 
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < value.length; i++) {
             if (t instanceof Integer) {
                 value[i] = (T) ((Integer) r.nextInt(MaxValue));
             } 
             else if (t instanceof Double) {
-                value[i] = (T) ((Double) (0.01 * r.nextInt(MaxValue)));
+                value[i] = (T) ((Double) (0.01 * r.nextInt(MaxValue*100)));
             } 
             else if (t instanceof Character){
                 if(Character.isUpperCase((Character)t)) c = (char)('A' + r.nextInt(MAXCHAR));
@@ -90,12 +88,10 @@ public class SortTest<T extends Comparable<T>> {
             if(tmp.compareTo(value[i]) > 0 && ASCENDING){
                 index = i;
                 tmp = value[i]; 
-                //break here?
             }
             else if (tmp.compareTo(value[i]) < 0 && !ASCENDING){
                 index = i;
                 tmp = value[i]; 
-                // break here?
             }
         }
         return index;
