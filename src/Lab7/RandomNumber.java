@@ -53,7 +53,7 @@ public class RandomNumber {
         
         System.out.println("\n\nThe minimum number is : " + bst.getMin());
         System.out.println("The maximum number is : " + bst.getMax());
-        System.out.println("The total number is : " + bst.total());
+        System.out.println("The total number is : " + bst.sum());
         System.out.print("Enter a number to search : ");
         int num = s.nextInt();
         System.out.printf("The number of occurance of %d is %d\n", num, bst.numberCount(num));
