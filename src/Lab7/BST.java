@@ -1,7 +1,6 @@
 
 package Lab7;
 
-import T5.Stack;
 import T6.Queue;
 
 public class BST<T extends Comparable<T>> {
@@ -10,6 +9,10 @@ public class BST<T extends Comparable<T>> {
     
     public BST(){
         root = null;
+    }
+    
+    public BSTNode getRoot(){
+        return root;
     }
     
     public boolean isEmpty(){
@@ -183,12 +186,28 @@ public class BST<T extends Comparable<T>> {
     }
     
     // TO GET TOTAL VALUE
-    public int total(){
-        setOrder(INORDER);
-        int t = 0;
-        while(!Q.isEmpty()) t += (Integer) Q.dequeue();
-        return t;
+    public int sum(){
+        return sum(root);
     }
+    
+    private int sum(BSTNode root){
+        if(root == null) return 0;
+        return (int) root.getData() + sum(root.getLeft()) + sum(root.getRight());
+    }
+    
+    /* LONGER METHOD
+    private int sum(BSTNode a){
+        if (a.getLeft() == null && a.getRight() == null) {
+            return (int) a.getData();
+        } else if (a.getLeft() == null) {
+            return (int) a.getData() + sum(a.getRight());
+        } else if (a.getRight() == null) {
+            return (int) a.getData() + sum(a.getLeft());
+        } else {
+            return (int) a.getData() + sum(a.getLeft()) + sum(a.getRight());
+        }
+    }
+    */
     
     // TO COUNT THE NUMBER OF OCCURANCE
     private static int cnt;
@@ -209,6 +228,23 @@ public class BST<T extends Comparable<T>> {
         }
     }
     
+    // Another way of finding occurance by Yan Cheng[Better], no need create cnt
+    public int findOccurence(T t) {
+        return findOccurence(root, t, 0);
+    }
+
+    public int findOccurence(BSTNode<T> a, T t, int count) {
+        if (a == null) {
+            return count;
+        } else if (t.compareTo(a.getData()) < 0) {
+            return findOccurence(a.getLeft(), t, count);
+        } else if (t.compareTo(a.getData()) > 0) {
+            return findOccurence(a.getRight(), t, count);
+        } else {
+            return count + 1 + findOccurence(a.getLeft(), t, count);
+        }
+    }
+    
     // WORD FREQUENCY GENERATOR
     public void wordCounter(){
         System.out.println("Word Frequency Generator Program");
@@ -225,4 +261,19 @@ public class BST<T extends Comparable<T>> {
             }
         }
     }
+    
+    // EXPRESSION
+//    public void addLeftNode(T t){
+//        BSTNode<T> left = new BSTNode<>();
+//        left.setData(t);
+//        root.setLeft(left);
+//    }
+//    
+//    public void addRightNode(T t){
+//        BSTNode<T> right = new BSTNode<>();
+//        right.setData(t);
+//        root.setRight(right);
+//    }
+//    
+    
 }
