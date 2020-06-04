@@ -33,3 +33,14 @@ public class SortString {
         
     }
 }
+
+/*
+Example output:
+The random String are : lsuchkbh ybmbstcb glinpcyt xehswomz okuejuyu unvmjuce tzdflhys ubfwgnua txknuenv uejqauft 
+Merge Sort - Ascending Order
+glinpcyt lsuchkbh okuejuyu txknuenv tzdflhys ubfwgnua uejqauft unvmjuce xehswomz ybmbstcb 
+
+The random String are : egbgqqjy waxxvumj jdlyybyv xquntfbz mdhkkceh mohamgsb soaewyno basgkrqo pfprsedw avonbuse 
+Quick Sort - Ascending Order
+avonbuse basgkrqo egbgqqjy jdlyybyv mdhkkceh pfprsedw mohamgsb soaewyno waxxvumj xquntfbz 
+*/
