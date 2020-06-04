@@ -1,4 +1,3 @@
-
 package Lab7;
 
 public class BSTNode<T extends Comparable<T>> {
@@ -34,7 +33,7 @@ public class BSTNode<T extends Comparable<T>> {
     public void setLeft(BSTNode<T> l) {
         leftLink = l;
     }
-
+    
     public BSTNode<T> getRight() {
         return rightLink;
     }
