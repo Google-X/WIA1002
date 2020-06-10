@@ -1,4 +1,4 @@
-/*
+/* [Amend Commit]
  * 2. Write a program that generates 10 random integers. Then, perform the following using Binary Search: 
 a. A method that returns true if the element can be found. 
 b. A method that returns the number of occurrence for the element. 
