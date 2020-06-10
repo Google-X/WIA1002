@@ -45,7 +45,7 @@ public class LinearSearch {
             System.out.printf("The character can be found in between %c and %c\n", c1, c2);
             int count = searcher.linearSearchCountBetween(c1, c2);
             System.out.printf("The number of the elements in between %c and %c in the data set is %d\n", c1, c2, count);
-            System.out.printf("The location(s) of the elements in between %c and %c in the data set is/are : ", c1, c2);
+            System.out.printf("The location(s) of the elements in between %c and %c is/are : ", c1, c2);
             for(int i : searcher.getLinearSearchIndexBetween(c1, c2)) System.out.print(i + " ");
             System.out.println();
         } else {
@@ -77,5 +77,5 @@ The location(s) of the W is/are : 3 9
 Enter two letters to search (begin end) : C N
 The character can be found in between C and N
 The number of the elements in between C and N in the data set is 3
-The location(s) of the elements in between C and N in the data set is/are : 1 4 8 
+The location(s) of the elements in between C and N is/are : 1 4 8 
 */
