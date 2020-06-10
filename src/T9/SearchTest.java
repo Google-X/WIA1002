@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 public class SearchTest<T extends Comparable<T>> {
-
+    
+    private boolean sorted;
     private boolean ASCENDING;
     private int size;
     private T[] value;
@@ -20,6 +21,7 @@ public class SearchTest<T extends Comparable<T>> {
     
     public SearchTest(T t, int size, int Max) {
         this.size = size;
+        ASCENDING = true;
         value = (T[]) new Comparable[size];
         char c;
         
@@ -58,9 +60,10 @@ public class SearchTest<T extends Comparable<T>> {
         }
     }
     
-    public SearchTest(T t, int size, int Max, boolean asccending) {
+    // For Binary Search
+    public SearchTest(T t, int size, int Max, boolean ascending) {
         this.size = size;
-        ASCENDING = asccending;
+        ASCENDING = ascending;
         value = (T[]) new Comparable[size];
         char c;
         
@@ -97,6 +100,7 @@ public class SearchTest<T extends Comparable<T>> {
                 System.out.println("Will update soon.");
             }
         }
+        selectionSort(ASCENDING);
     }
 
     public void showValue() {
@@ -201,9 +205,32 @@ public class SearchTest<T extends Comparable<T>> {
     }
     */
     
+    // Q2 Methods: Need sort first or use the second constructor
+    private int binarySearchIndex(int start, int end, T t) {
+        int middle = (start + end) / 2;
+        if (end < start) {
+            return -1;
+        }
+        if (value[middle].compareTo(t) == 0) {
+            return middle;
+        } else if ((value[middle].compareTo(t) > 0 && ASCENDING)
+                || (value[middle].compareTo(t) < 0 && !ASCENDING)) {
+            return binarySearchIndex(start, middle-1, t);
+        } else {
+            return binarySearchIndex(middle+1, end, t);
+        }
+    }
+    
+    public boolean binarySearch(T t){
+        if(!sorted) selectionSort(ASCENDING);
+        int index = binarySearchIndex(0, value.length, t);
+        return index != -1;
+    }
+    
     public int binarySearchCount(T t) {
+        if(!sorted) selectionSort(ASCENDING);
         int count = 0;
-        int index = binarySearchCount(0, value.length, t);
+        int index = binarySearchIndex(0, value.length, t);
         if (index != -1) {
             for (int i = index; i >= 0 && t.compareTo(value[i]) == 0; i--) {
                 count++;
@@ -214,27 +241,88 @@ public class SearchTest<T extends Comparable<T>> {
         }
         return count;
     }
-
-    public int binarySearchCount(int start, int end, T t) {
+    
+    public int[] binarySearchList(T t) {
+        if(!sorted) selectionSort(ASCENDING);
+        int index = binarySearchIndex(0, value.length, t);
+        
+        if (index != -1) {
+            int newIndex = index;
+            int count = binarySearchCount(t);
+            int[] re = new int[count];
+            for (int i = index; i >= 0 && t.compareTo(value[i]) == 0; i--) {
+                newIndex = i;
+            }
+            for (int i = 0; newIndex < value.length && t.compareTo(value[newIndex]) == 0; i++, newIndex++) {
+                re[i] = newIndex;
+            }
+            return re;
+        }
+        return null;
+    }
+    
+    // RANGE
+    private int binarySearchIndexBetween(int start, int end, T t1, T t2){
         int middle = (start + end) / 2;
         if (end < start) {
             return -1;
         }
-        if (value[middle].compareTo(t) == 0) {
+        if (value[middle].compareTo(t1) >= 0 && value[middle].compareTo(t2) <= 0) {
             return middle;
-        } else if ((value[middle].compareTo(t) > 0 && ASCENDING)
-                || (value[middle].compareTo(t) < 0 && !ASCENDING)) {
-            return binarySearchCount(start, middle - 1, t);
+        } else if ((value[middle].compareTo(t1) > 0 && ASCENDING)
+                || (value[middle].compareTo(t1) < 0 && !ASCENDING)) {
+            return binarySearchIndexBetween(start, middle-1, t1, t2);
         } else {
-            return binarySearchCount(middle + 1, end, t);
+            return binarySearchIndexBetween(middle+1, end, t1, t2);
         }
     }
-
+    
+    public boolean binarySearchBetween(T t1, T t2){
+        if(!sorted) selectionSort(ASCENDING);
+        int index = binarySearchIndexBetween(0, value.length, t1, t2);
+        return index != -1;
+    }
+    
+    public int binarySearchCountBetween(T t1, T t2){
+        if(!sorted) selectionSort(ASCENDING);
+        int count = 0;
+        int index = binarySearchIndexBetween(0, value.length, t1, t2);
+        if (index != -1) {
+            for (int i = index; i >= 0 && t1.compareTo(value[i]) <= 0 && t2.compareTo(value[i]) >= 0; i--) {
+                count++;
+            }
+            for (int i = index + 1; i < value.length && t1.compareTo(value[i]) <= 0 && t2.compareTo(value[i]) >= 0; i++) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public int[] binarySearchListBetween(T t1, T t2){
+        if(!sorted) selectionSort(ASCENDING);
+        int index = binarySearchIndexBetween(0, value.length, t1, t2);
+        
+        if (index != -1) {
+            int newIndex = index;
+            int count = binarySearchCountBetween(t1, t2);
+            int[] re = new int[count];
+            for (int i = index; i >= 0 && t1.compareTo(value[i]) <= 0 && t2.compareTo(value[i]) >= 0; i--) {
+                newIndex = i;
+            }
+            for (int i = 0; newIndex < value.length && t1.compareTo(value[newIndex]) <= 0 && t2.compareTo(value[newIndex]) >= 0    ; i++, newIndex++) {
+                re[i] = newIndex;
+            }
+            return re;
+        }
+        return null;
+    }
+    
     public void selectionSort(boolean ascending) {
         ASCENDING = ascending;
         for (int i = 0; i < value.length - 1; i++) {
             swap(i, getMinIndex(i));
         }
+        sorted = true;
     }
 
     public void swap(int index1, int index2) {
