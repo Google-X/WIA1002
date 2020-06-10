@@ -53,3 +53,29 @@ public class LinearSearch {
         }
     }
 }
+
+/*
+Example output 1:
+The Character data set are : M X O M L U B X D T 
+
+Linear Search
+Enter a letter to search: A
+A is not found
+
+Enter two letters to search (begin end) : E J
+No character can be found in between E and J
+
+Example output 2:
+The Character data set are : Q H R W C R T U N W 
+
+Linear Search
+Enter a letter to search: W
+W is found
+The number of W in the data set is 2
+The location(s) of the W is/are : 3 9 
+
+Enter two letters to search (begin end) : C N
+The character can be found in between C and N
+The number of the elements in between C and N in the data set is 3
+The location(s) of the elements in between C and N in the data set is/are : 1 4 8 
+*/
