@@ -1,5 +1,6 @@
 package T9;
 
+// List & ArrayList only for special use
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
