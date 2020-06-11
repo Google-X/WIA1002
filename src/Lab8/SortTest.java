@@ -176,6 +176,83 @@ public class SortTest<T extends Comparable<T>> {
         for(int i = currentIndex; i <= rightLast; i++) value[i] = temp[i];
     }
     
+    // MERGE SORT V2
+    // @ Huaiyu Khaw
+    public void mergeSortV2(){
+        mergeSortV2(0, value.length-1);
+    }
+    
+    private void mergeSortV2(int l, int r){
+        int[] arr = new int[value.length];
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = (Integer)value[i];
+        }
+        mergeSortV2(arr, l, r);
+    }
+    
+    private void mergeSortV2(int[] arr, int l, int r){
+        if(l < r){
+//          Find the middle point
+            int m = (l + r) / 2;
+            
+//          Sort first and second halves
+            mergeSortV2(arr, l, m);
+            mergeSortV2(arr, m+1, r);
+            
+//          Merge the sorted halves
+            mergeV2(arr, l, m, r);
+        }
+    }
+    
+    private void mergeV2(int[] arr, int l, int m, int r){
+//      Find sizes of two subarrays to be merged
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        
+//      Create tmp arrays
+        int L[] = new int[n1];
+        int R[] = new int[n2];
+        
+//      Copy data to tmp arrays
+        for(int i = 0; i < n1; i++){
+            L[i] = arr[l+i];
+        }
+        for(int j = 0; j < n2; j++){
+            R[j] = arr[m+1+j];
+        }
+        
+        /*Merge the tmp arrays*/
+        // Initial indexed of first and second subarrays
+        int i = 0, j = 0;
+        
+        // Initial index of merged subarray
+        int k = l;
+        while(i < n1 && j < n2){
+            // Check if the element in two array are both odd or both even
+            // if true, perform the same sorting
+            if((L[i] + R[j]) % 2 == 0) {
+                if(L[i] <= R[j]){
+                    arr[k] = L[i];
+                    i++;
+                } else {
+                    arr[k] = R[j];
+                    j++;
+                }
+            }
+            // else pull the odd number to the front
+            else {
+                if(L[i] % 2 == 1){
+                    arr[k] = L[i];
+                    i++;
+                } else {
+                    arr[k] = R[j];
+                    j++;
+                }
+            }
+            k++;
+        }
+    }
+    
     // QUICK SORT
     public void quickSort(){
         quickSort(0, value.length-1);
