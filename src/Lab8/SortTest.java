@@ -13,7 +13,7 @@ public class SortTest<T extends Comparable<T>> {
     private int SIZE;
     private T[] value;
     private Random r = new Random();
-
+    
     public SortTest(T t, int SIZE, int MaxValue, boolean ascending) {
         this.SIZE = SIZE;
         ASCENDING = ascending;
@@ -354,4 +354,46 @@ public class SortTest<T extends Comparable<T>> {
         return last;
     }
     
+    // Question 4: HeapSort 
+    public void heapSort() {
+        buildMaxHeap();
+
+        // i starts from length - 1 (means last element) 
+        for (int i = value.length - 1; i > 0; i--) {
+
+            // swap the largest (element at 0th index) with the ith element 
+            swap(i, 0);
+
+            // by passing i as size, we are actually decreasing the length of heap by one 
+            // reason: we need to exclude the last element because we swapped it with the largest element 
+            maxHeapify(i, 0);
+        }
+    }
+
+    public void buildMaxHeap() {
+        int n = value.length;
+        for (int i = (n / 2) - 1; i >= 0; i--) {
+            // we max heapify the smallest tree first 
+            maxHeapify(n, i);
+        }
+
+    }
+
+    public void maxHeapify(int size, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < size && value[left].compareTo(value[largest]) > 0) {
+            largest = left; 
+        }
+        if (right < size && value[right].compareTo(value[largest]) > 0) {
+            largest = right;
+        }
+        if (largest != i) {
+            swap(i, largest);
+            // propagates downwards 
+            maxHeapify(size, largest);
+        }
+    }
+
 }
