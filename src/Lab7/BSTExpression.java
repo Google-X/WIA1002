@@ -26,34 +26,34 @@ import java.util.Scanner;
 public class BSTExpression {
 
     static List<String> Expression = new ArrayList<String>();
-    static BST<String> tree = new BST<>();
+    static BST<String> Tree;
     static Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        Tree = new BST<>();
         System.out.print("Enter Infix Expression : ");
         setExpression("(5*4+8)/7+2");
 
-        System.out.println("The number of elements in the tree : " + Expression.size());
+        System.out.println("The number of elements in the tree : " + Tree.getSize());
 
         System.out.print("The tree elements - INORDER : ");
-        tree.setOrder(1);
-        tree.showTreeStack();
+        Tree.setOrder(1);
+        Tree.showTreeStack();
 
         System.out.print("The tree elements - PREORDER : ");
-        tree.setOrder(2);
-        tree.showTreeStack();
+        Tree.setOrder(2);
+        Tree.showTreeStack();
 
         System.out.print("The tree elements - POSTORDER : ");
-        tree.setOrder(3);
-        tree.showTreeStack();
+        Tree.setOrder(3);
+        Tree.showTreeStack();
 
     }
 
     public static void createBST() {
 
         Stack<Character> operator = new Stack<>();
-        Stack<BST> bst = new Stack<>();
+        Stack<BST<String>> bst = new Stack<>();
 
         for (String e : Expression) {
             if (e.equals("(")) {
@@ -62,7 +62,8 @@ public class BSTExpression {
                 char c = operator.peek();
                 while (c != '(') {
                     subTree(operator, bst);
-                    if (operator.peek() == '(') {
+                    c = operator.peek();
+                    if (c == '(') {
                         operator.pop();
                     }
                 }
@@ -78,7 +79,7 @@ public class BSTExpression {
                     if (getPriority(e.charAt(0)) >= getPriority(c)) {
                         operator.push(e.charAt(0));
                     } else {
-                        while (getPriority(e.charAt(0)) < getPriority(c)) {
+                        while (getPriority(e.charAt(0)) <= getPriority(c)) {
                             subTree(operator, bst);
                             if (!operator.isEmpty()) {
                                 c = operator.peek();
@@ -88,17 +89,15 @@ public class BSTExpression {
                         }
                         operator.push(e.charAt(0));
                     }
-                } 
+                }
             }
-
-            while (!operator.isEmpty()) {
-                subTree(operator, bst);
-            }
-
-            tree = bst.pop();
         }
+        while (!operator.isEmpty()) {
+            subTree(operator, bst);
+        }
+        Tree = bst.pop();
     }
-    
+
     public static void setExpression(String input) {
 
         char[] c = input.toCharArray();
@@ -121,17 +120,16 @@ public class BSTExpression {
         }
         
         createBST();
-
     }
 
-    public static void subTree(Stack<Character> operator, Stack<BST> bst) {
+    public static void subTree(Stack<Character> operator, Stack<BST<String>> bst) {
         char oper = operator.pop();
-        BST<Character> newTree = new BST<>();
-        newTree.addNode(oper);
-        BST<Character> right = bst.pop();
+        BST<String> newTree = new BST<>();
+        newTree.addNode(String.valueOf(oper));
+        BST<String> right = bst.pop();
         newTree.getRoot().setRight(right.getRoot());
         if (!bst.isEmpty()) {
-            BST<Character> left = bst.pop();
+            BST<String> left = bst.pop();
             newTree.getRoot().setLeft(left.getRoot());
         }
         bst.push(newTree);
