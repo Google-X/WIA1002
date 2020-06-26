@@ -1,4 +1,4 @@
-/*
+/* CREDIT: GitHub @ HeLinChooi
  * 3. Write a program to request an infix expression from the user and then insert the expression to the BSTExpression. You need to create the new BSTExpression class.   
 Example output:
 
@@ -133,14 +133,12 @@ public class BSTExpression {
 
     public static void subTree(Stack<Character> operator, Stack<BST<String>> bst) {
         char oper = operator.pop();
+        BST<String> right = bst.pop();
+        BST<String> left = bst.pop();
         BST<String> newTree = new BST<>();
         newTree.addNode(String.valueOf(oper));
-        BST<String> right = bst.pop();
+        newTree.getRoot().setLeft(left.getRoot());
         newTree.getRoot().setRight(right.getRoot());
-        if (!bst.isEmpty()) {
-            BST<String> left = bst.pop();
-            newTree.getRoot().setLeft(left.getRoot());
-        }
         bst.push(newTree);
     }
 
