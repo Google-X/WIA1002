@@ -4,16 +4,16 @@ Example output:
 
 Enter Infix Expression : 4+5*7
 The number of elemetns in the tree : 5
-The tree elements - INORDER : <-- 4 <-- + <-- 5 <-- * <-- 7
-The tree elements - PREORDER : 
-The tree elements - POSTORDER : 
+The tree elements - INORDER :  <-- 4 <-- + <-- 5 <-- * <-- 7
+The tree elements - PREORDER :  <-- + <-- 4 <-- * <-- 5 <-- 7
+The tree elements - POSTORDER :  <-- 4 <-- 5 <-- 7 <-- * <-- +
 
 Example 2:
 Enter Infix Expression : (5*4+8)/7+2
 The number of elemetns in the tree : 9
-The tree elements - INORDER : 
-The tree elements - PREORDER : 
-The tree elements - POSTORDER : 
+The tree elements - INORDER :  <-- 5 <-- * <-- 4 <-- + <-- 8 <-- / <-- 7 <-- + <-- 2
+The tree elements - PREORDER :  <-- + <-- / <-- + <-- * <-- 5 <-- 4 <-- 8 <-- 7 <-- 2
+The tree elements - POSTORDER :  <-- 5 <-- 4 <-- * <-- 8 <-- + <-- 7 <-- / <-- 2 <-- +
 
  */
 package Lab7;
@@ -32,7 +32,7 @@ public class BSTExpression {
     public static void main(String[] args) {
         Tree = new BST<>();
         System.out.print("Enter Infix Expression : ");
-        setExpression("(5*4+8)/7+2");
+        setExpression(s.nextLine());
 
         System.out.println("The number of elements in the tree : " + Tree.getSize());
 
@@ -56,9 +56,14 @@ public class BSTExpression {
         Stack<BST<String>> bst = new Stack<>();
 
         for (String e : Expression) {
+            
+            // IF '(' FOUND
             if (e.equals("(")) {
                 operator.push(e.charAt(0));
-            } else if (e.equals(")")) {
+            } 
+            
+            // IF ')' FOUND
+            else if (e.equals(")")) {
                 char c = operator.peek();
                 while (c != '(') {
                     subTree(operator, bst);
@@ -67,14 +72,18 @@ public class BSTExpression {
                         operator.pop();
                     }
                 }
-            } else if (Character.isLetterOrDigit(e.charAt(0))) {
+            } 
+            
+            // IF LETTER OR NUMBER IS FOUND
+            else if (Character.isLetterOrDigit(e.charAt(0))) {
                 BST<String> tmp = new BST<>();
                 tmp.addNode(e);
                 bst.push(tmp);
-            } else {
-                if (operator.isEmpty()) {
-                    operator.push(e.charAt(0));
-                } else {
+            } 
+            
+            // IF OTHER OPERATOR IS FOUND
+            else {
+                if (!operator.isEmpty()) {
                     char c = operator.peek();
                     if (getPriority(e.charAt(0)) >= getPriority(c)) {
                         operator.push(e.charAt(0));
@@ -83,24 +92,24 @@ public class BSTExpression {
                             subTree(operator, bst);
                             if (!operator.isEmpty()) {
                                 c = operator.peek();
-                            } else {
-                                break;
-                            }
+                            } else break;
                         }
                         operator.push(e.charAt(0));
                     }
-                }
+                } else operator.push(e.charAt(0));
             }
         }
-        while (!operator.isEmpty()) {
-            subTree(operator, bst);
-        }
+        
+        // AFTER FINISH READING THE EXPRESSION
+        while (!operator.isEmpty()) subTree(operator, bst);
+        
+        // POP THE BST FROM THE STACK<BST>
         Tree = bst.pop();
     }
 
     public static void setExpression(String input) {
 
-        char[] c = input.toCharArray();
+        char[] c = input.replaceAll("\\s+","").toCharArray();
         String tmp = "";
 
         for (int i = 0; i < c.length; i++) {
