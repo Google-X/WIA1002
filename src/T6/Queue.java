@@ -65,6 +65,19 @@ public class Queue<T> {
             }
         }
     }
+    
+    // LAB 7 Q3
+    public void showQueueStack(){
+        if (head == null) {
+            System.out.println("EmptyQueueException");
+        } else {
+            ListNode c = head;
+            while (c != null) {
+                System.out.print(c.toStringStack());
+                c = c.getLink();
+            }
+        }
+    }
 
     // Question 3 showQueue
     /*
