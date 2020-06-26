@@ -1,5 +1,5 @@
 /*
- * Question 6 bottom.
+ * Question 6 bottom. [NEED AMENDMENT, CLEANUP]
  */
 
 package Lab5;
@@ -38,7 +38,7 @@ public class Maze {
         System.out.println("The original maze is");
         System.out.println(maze);
         maze = maze.replaceAll("\n", "");
-
+        
         visited = new boolean[maze.length()];
         wall = new boolean[maze.length()];
         char[] analysed = maze.toCharArray();
