@@ -39,6 +39,11 @@ public class ListNode<T> {
         return data + " --> ";
     }
     
+    // LAB 7 Q3
+    public String toStringStack(){
+        return " <-- " + data;
+    }
+    
     // For Tutorial Question 3
     public String toStringCustomer(){
         return data + " set(s) -->\n";
