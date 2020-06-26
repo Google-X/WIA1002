@@ -14,6 +14,12 @@ public class SortTest<T extends Comparable<T>> {
     private T[] value;
     private Random r = new Random();
     
+    public SortTest(T[] arr){
+        value = (T[])(Integer[]) arr.clone();
+        SIZE = arr.length;
+        ASCENDING = true;
+    }
+    
     public SortTest(T t, int SIZE, int MaxValue, boolean ascending) {
         this.SIZE = SIZE;
         ASCENDING = ascending;
@@ -76,8 +82,9 @@ public class SortTest<T extends Comparable<T>> {
     public void showValue(){
         for(int i = 0; i < value.length; i++){
             System.out.print(value[i] + " ");
-            if((i+1) % 10 == 0) System.out.println();
+//            if((i+1) % 10 == 0) System.out.println();
         }
+        System.out.println();
     }
     
     // SELECTION SORT
