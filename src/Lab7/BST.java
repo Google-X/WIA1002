@@ -115,6 +115,12 @@ public class BST<T extends Comparable<T>> {
         Q.showQueue();
     }
     
+    // LAB 7 Q3
+    public void showTreeStack(){
+        Q.showQueueStack();
+        System.out.println();
+    }
+    
     public void setOrder(int a){
         traverse = a;
         Q = new Queue<>();
