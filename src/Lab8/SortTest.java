@@ -347,11 +347,11 @@ public class SortTest<T extends Comparable<T>> {
                 }
                 else {
                     last--;
-                    correctSide = last <= first;
+                    correctSide = first <= last;
                 }
             }
             if(first < last) {
-                swap(last, first);
+                swap(first, last);
                 first++;
                 last--;
             }
