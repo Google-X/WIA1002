@@ -14,6 +14,7 @@ public class SortTest<T extends Comparable<T>> {
     private T[] value;
     private Random r = new Random();
     
+    // For SortTime to pass in the array, clone is used so it is not pointing to the array
     public SortTest(T[] arr){
         value = (T[])(Integer[]) arr.clone();
         SIZE = arr.length;
@@ -354,7 +355,7 @@ public class SortTest<T extends Comparable<T>> {
                 swap(first, last);
                 first++;
                 last--;
-            }
+            }   
         } while(first <= last);
         
         swap(index, last);
