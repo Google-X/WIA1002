@@ -105,9 +105,10 @@ public class Q4ArrayHashTable<K, V> {
                 HashTable[getHashCode(key)] = new ArrayMapNode<>(key, val);
                 size++;
             }else{
-                for (int i = getHashCode(key) + 1; i < MAX; i++) {
-                    if (HashTable[i] == null) {
-                        HashTable[i] = new ArrayMapNode<>(key, val);
+                int code = getHashCode(key);
+                for (int i = code + 1; i < MAX + code; i++) {
+                    if (HashTable[i%MAX] == null) {
+                        HashTable[i%MAX] = new ArrayMapNode<>(key, val);
                         size++;
                         break;
                     }
