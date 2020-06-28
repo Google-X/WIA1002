@@ -41,15 +41,12 @@ public class ArrayHashTableTesterClass {
         ArrayMap.put("210-260", "CCNA RS Security");
         display();
         
-        System.out.println("Remove 200-101");
+        System.out.println("Remove the course 200-101");
         ArrayMap.remove("200-101");
         display();
         
         System.out.print("Enter a code to search : ");
-        String search = s.nextLine();
-        if(!ArrayMap.containsKey(search)){
-            System.out.println("There is not key : " + search);
-        }
+        ArrayMap.search(s.nextLine());
         
     }
     
@@ -59,3 +56,19 @@ public class ArrayHashTableTesterClass {
         System.out.println();
     }
 }
+/*
+Example output:
+The number of course is 4
+100-101 : ICND 1 | 200-101 : ICND 2 | 200-120 : CCNA Routing and Switching | 210-260 : CCNA Security | 
+Adding a new course
+The number of course is 5
+100-101 : ICND 1 | 200-101 : ICND 2 | 200-120 : CCNA Routing and Switching | 210-260 : CCNA Security | 300-101 : ROUTE | 
+Modifying 210-260
+The number of course is 5
+100-101 : ICND 1 | 200-101 : ICND 2 | 200-120 : CCNA Routing and Switching | 210-260 : CCNA RS Security | 300-101 : ROUTE | 
+Remove the course 200-101
+The number of course is 4
+100-101 : ICND 1 | 300-101 : ROUTE | 200-120 : CCNA Routing and Switching | 210-260 : CCNA RS Security | 
+Enter a code to search : 210-260
+Course 210-260 : CCNA RS Security
+*/
