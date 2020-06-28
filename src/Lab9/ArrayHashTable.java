@@ -27,59 +27,61 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
     }
 
     public void clear() {
+        size = 0;
+        index = 0;
         HashTable = new ArrayMapNode[MAX];
     }
 
     public void showHashTable() {
-        for(int i = 0; i < index; i++){
-            System.out.print(HashTable[i].toString() + " | ");
-        }
-    }
-    
-    public void search(Comparable<K> key){
-        for(int i = 0; i < index; i++){
-            if(key.compareTo(HashTable[i].getKey()) == 0){
-                System.out.println("Course " + HashTable[i].toString());
-                return;
+        if(isEmpty()) System.out.println("The table is empty.");
+        else {
+            for(int i = 0; i < index; i++){
+                System.out.print(HashTable[i].toString() + " | ");
             }
         }
-        System.out.println("There is no key : " + key);
     }
     
     public boolean containsKey(Comparable<K> key) {
-        for(int i = 0; i < index; i++){
-            if(key.compareTo(HashTable[i].getKey()) == 0){
-                return true;
+        if(isEmpty()) System.out.println("The table is empty.");
+        else {
+            for(int i = 0; i < index; i++){
+                if(key.compareTo(HashTable[i].getKey()) == 0){
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public boolean containsValue(Comparable<V> val) {
-        for(int i = 0; i < index; i++){
-            if(val.compareTo(HashTable[i].getValue()) == 0){
-                return true;
+        if(isEmpty()) System.out.println("The table is empty.");
+        else {
+            for(int i = 0; i < index; i++){
+                if(val.compareTo(HashTable[i].getValue()) == 0){
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public V get(Comparable<K> key) {
-        for(int i = 0; i < index; i++){
-            if(key.compareTo(HashTable[i].getKey()) == 0){
-                return HashTable[i].getValue();
+        if(isEmpty()) System.out.println("The table is empty.");
+        else {
+            for(int i = 0; i < index; i++){
+                if(key.compareTo(HashTable[i].getKey()) == 0){
+                    return HashTable[i].getValue();
+                }
             }
         }
         return null;
     }
-
+    
     public void put(Comparable<K> key, V val) {
         
         // First insertion
         if(isEmpty()){
-            HashTable[index] = new ArrayMapNode<>();
-            HashTable[index].setKey((K) key);
-            HashTable[index].setValue(val);
+            HashTable[index] = new ArrayMapNode<>((K) key, val);
             index++;
             size++;
             return;
@@ -95,9 +97,7 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
             }
         } else {
             if (!isFull()) {
-                HashTable[index] = new ArrayMapNode<>();
-                HashTable[index].setKey((K) key);
-                HashTable[index].setValue(val);
+                HashTable[index] = new ArrayMapNode<>((K)key, val);
                 index++;
                 size++;
             } 
@@ -111,15 +111,14 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
                     V re = HashTable[i].getValue();
                     HashTable[i].setKey(HashTable[index-1].getKey());
                     HashTable[i].setValue(HashTable[index-1].getValue());
-                    HashTable[index-1] = new ArrayMapNode<>();
+                    HashTable[index-1] = null;
                     index--;
                     size--;
                     return re;
                 }
                 if(i == index-1) System.out.println("There is no key : " + key);
             }
-        } else System.out.println("HashTableEmptyException");
-        
+        } else System.out.println("The table is empty.");
         return null;
     }
     
