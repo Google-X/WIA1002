@@ -1,5 +1,7 @@
 /*
 3. Create an ADT HashTable named ArrayHashTable. The ADT consists of the following method and the maximum size of the ADT is 20. The ADT consists of the following method 
+
+NOTE: Instead of using index, break the for loop while checking if current MapNode is null is a better option.
 */
 package Lab9;
 
