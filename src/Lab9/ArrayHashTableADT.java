@@ -16,7 +16,7 @@ package Lab9;
 
 public interface ArrayHashTableADT<K, V> {
     
-    public int MAX = 5;
+    public int MAX = 20;
     public boolean isEmpty();
     public boolean isFull();
     public int getSize();
