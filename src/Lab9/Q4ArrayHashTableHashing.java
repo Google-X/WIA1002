@@ -52,6 +52,14 @@ public class Q4ArrayHashTableHashing {
         }
         else System.out.println("Product ID " + PID + " cannot be found");
         
+        // Test to get linear probing to index 0
+        System.out.println("\nAdding new limited durian : 10739 % 20 == 19 --> same as Red Prawn");
+        HashTable.put(10739, "Zero-To-Hero");
+        HashTable.showHashTable();
+        System.out.println("The Hash Table size is " + HashTable.getSize());
+        System.out.println("Product ID : " + PID + " " + HashTable.get(10739));
+        System.out.println("Location : " + HashTable.getLocation(10739));
+        
     }
 }
 /*
