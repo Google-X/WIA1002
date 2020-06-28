@@ -3,18 +3,14 @@
 */
 package Lab9;
 
-import java.util.ArrayList;
-
 public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
     
     private int size, index;
-    private ArrayList<Integer> removedIndex;
     private ArrayMapNode<K, V>[] HashTable;
     
     public ArrayHashTable(){
         size = 0;
         index = 0;
-        removedIndex = new ArrayList<>();
         HashTable = new ArrayMapNode[MAX];
     }
     
@@ -36,16 +32,23 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
 
     public void showHashTable() {
         for(int i = 0; i < index; i++){
-            if(removedIndex.contains(i)) continue;
-            System.out.print(HashTable[i].toString());
+            System.out.print(HashTable[i].toString() + " | ");
         }
     }
-
+    
+    public void search(Comparable<K> key){
+        for(int i = 0; i < index; i++){
+            if(key.compareTo(HashTable[i].getKey()) == 0){
+                System.out.println("Course " + HashTable[i].toString());
+                return;
+            }
+        }
+        System.out.println("There is no key : " + key);
+    }
+    
     public boolean containsKey(Comparable<K> key) {
         for(int i = 0; i < index; i++){
-            if(removedIndex.contains(i)) continue;
             if(key.compareTo(HashTable[i].getKey()) == 0){
-                System.out.println(HashTable[i].toString());
                 return true;
             }
         }
@@ -54,7 +57,6 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
 
     public boolean containsValue(Comparable<V> val) {
         for(int i = 0; i < index; i++){
-            if(removedIndex.contains(i)) continue;
             if(val.compareTo(HashTable[i].getValue()) == 0){
                 return true;
             }
@@ -64,7 +66,6 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
 
     public V get(Comparable<K> key) {
         for(int i = 0; i < index; i++){
-            if(removedIndex.contains(i)) continue;
             if(key.compareTo(HashTable[i].getKey()) == 0){
                 return HashTable[i].getValue();
             }
@@ -85,46 +86,40 @@ public class ArrayHashTable<K, V> implements ArrayHashTableADT<K, V>{
         }
         
         // Second insertion and so on
-        if(!containsKey(key)){
-            if(!removedIndex.isEmpty()){
-                int getIndex = removedIndex.remove(0);
-                HashTable[getIndex].setKey((K) key);
-                HashTable[getIndex].setValue(val);
-                size++;
-            } else if (!isFull()) {
-                HashTable[index] = new ArrayMapNode<>();
-                HashTable[index].setKey((K) key);
-                HashTable[index].setValue(val);
-                index++;
-                size++;
-            } else if(isFull()) {
-                System.out.println("Cannot add, table is full.");
-            }
-        } else {
+        if(containsKey(key)){
             for(int i = 0; i < index; i++){
-                if(removedIndex.contains(i)) continue;
                 if(key.compareTo(HashTable[i].getKey()) == 0){
                     HashTable[i].setValue(val);
                     return;
                 }
             }
+        } else {
+            if (!isFull()) {
+                HashTable[index] = new ArrayMapNode<>();
+                HashTable[index].setKey((K) key);
+                HashTable[index].setValue(val);
+                index++;
+                size++;
+            } 
         }
-        
-        
     }
 
     public V remove(Comparable<K> key) {
-        if(isEmpty()) System.out.println("Nothing to removed");
-        for(int i = 0; i < index; i++){
-            if(removedIndex.contains(i)) continue;
-            if(key.compareTo(HashTable[i].getKey()) == 0){
-                V re = HashTable[i].getValue();
-                HashTable[i] = new ArrayMapNode<>();
-                removedIndex.add(i);
-                size--;
-                return re;
+        if(!isEmpty()) {
+            for(int i = 0; i < index; i++){
+                if(key.compareTo(HashTable[i].getKey()) == 0){
+                    V re = HashTable[i].getValue();
+                    HashTable[i].setKey(HashTable[index-1].getKey());
+                    HashTable[i].setValue(HashTable[index-1].getValue());
+                    HashTable[index-1] = new ArrayMapNode<>();
+                    index--;
+                    size--;
+                    return re;
+                }
+                if(i == index-1) System.out.println("There is no key : " + key);
             }
-        }
+        } else System.out.println("HashTableEmptyException");
+        
         return null;
     }
     
