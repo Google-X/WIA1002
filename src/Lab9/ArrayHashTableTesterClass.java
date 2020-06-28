@@ -46,7 +46,10 @@ public class ArrayHashTableTesterClass {
         display();
         
         System.out.print("Enter a code to search : ");
-        ArrayMap.search(s.nextLine());
+        String search = s.nextLine();
+        
+        if(ArrayMap.containsKey(search)) System.out.println("Course " + search + " : " + ArrayMap.get(search));
+        else System.out.println("Course " + search + " cannot be found");
         
     }
     
