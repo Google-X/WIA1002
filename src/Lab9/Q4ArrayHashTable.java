@@ -100,21 +100,25 @@ public class Q4ArrayHashTable<K, V> {
     
     // Question 4 Hashing
     public void put(K key, V val){
-        if(!isFull()){
-            if(HashTable[getHashCode(key)] == null){
-                HashTable[getHashCode(key)] = new ArrayMapNode<>(key, val);
-                size++;
-            } else {
-                int code = getHashCode(key);
-                for (int i = code + 1; i < MAX + code; i++) {
-                    if (HashTable[i % MAX] == null) {
-                        HashTable[i % MAX] = new ArrayMapNode<>(key, val);
-                        size++;
-                        break;
+        if(containsKey((Comparable<K>) key)){
+            HashTable[getLocation((Comparable<K>) key)].setValue(val);
+        } else {
+            if(!isFull()){
+                if(HashTable[getHashCode(key)] == null){
+                    HashTable[getHashCode(key)] = new ArrayMapNode<>(key, val);
+                    size++;
+                } else {
+                    int code = getHashCode(key);
+                    for (int i = code + 1; i < MAX + code; i++) {
+                        if (HashTable[i % MAX] == null) {
+                            HashTable[i % MAX] = new ArrayMapNode<>(key, val);
+                            size++;
+                            break;
+                        }
                     }
                 }
-            }
-        } else System.out.println("The table is full.");
+            } else System.out.println("The table is full.");
+        }
     }
     
     private int getHashCode(K key){
