@@ -67,6 +67,15 @@ public class Q4ArrayHashTableHashing {
         HashTable.remove(testRemove);
         HashTable.showHashTable();
         System.out.println("The Hash Table size is " + HashTable.getSize());
+        
+        // Test amending
+        int testAmend = testAdding;
+        System.out.println("\nAmending new limited durian : 10739 % 20 == 19 --> same as Red Prawn");
+        HashTable.put(testAmend, "Zero-To-Hero v2");
+        HashTable.showHashTable();
+        System.out.println("The Hash Table size is " + HashTable.getSize());
+        System.out.println("Product ID : " + testAmend + " " + HashTable.get(testAmend));
+        System.out.println("Location : " + HashTable.getLocation(testAmend));
     }
 }
 /*
@@ -124,4 +133,18 @@ Removing key : 10643
 10714 : Green Bamboo
 10719 : Red Prawn
 The Hash Table size is 8
+
+Example of amending the value of a key
+Amending new limited durian : 10739 % 20 == 19 --> same as Red Prawn
+10739 : Zero-To-Hero v2
+10203 : Musang King
+10403 : D24
+10425 : Golden Phoenix
+10863 : Black Pearl
+10311 : XO
+10714 : Green Bamboo
+10719 : Red Prawn
+The Hash Table size is 8
+Product ID : 10739 Zero-To-Hero v2
+Location : 0
 */
