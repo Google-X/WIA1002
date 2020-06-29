@@ -57,6 +57,7 @@ public class Q5ArrayHashTableChaining {
         System.out.println("\nTest removing key : " + testRemove);
         String name = HashTable.remove(testRemove);
         HashTable.showHashTable();
+        System.out.println("The Hash Table size is " + HashTable.getSize());
         
         System.out.println("Test locating key : 10863");
         PID = 10863;
@@ -70,6 +71,7 @@ public class Q5ArrayHashTableChaining {
         System.out.println("\nTest adding back key : " + testRemove);
         HashTable.put(testRemove, name);
         HashTable.showHashTable();
+        System.out.println("The Hash Table size is " + HashTable.getSize());
         
         System.out.println("Test locating key : 10863");
         PID = 10863;
@@ -83,6 +85,7 @@ public class Q5ArrayHashTableChaining {
         System.out.println("\nTest amend value for key : " + testRemove);
         HashTable.put(testRemove, name + " V2");
         HashTable.showHashTable();
+        System.out.println("The Hash Table size is " + HashTable.getSize());
         
         System.out.println("Test locating key : 10863");
         PID = 10863;
@@ -147,6 +150,7 @@ Test removing key : 10203
 10311 : XO
 10714 : Green Bamboo
 10719 : Red Prawn
+The Hash Table size is 7
 Test locating key : 10863
 Product ID : 10863 Black Pearl
 The elements in the same location are : 
@@ -161,6 +165,7 @@ Test adding back key : 10203
 10311 : XO
 10714 : Green Bamboo
 10719 : Red Prawn
+The Hash Table size is 8
 Test locating key : 10863
 Product ID : 10863 Black Pearl
 The elements in the same location are : 
@@ -175,6 +180,7 @@ Test amend value for key : 10203
 10311 : XO
 10714 : Green Bamboo
 10719 : Red Prawn
+The Hash Table size is 8
 Test locating key : 10863
 Product ID : 10863 Black Pearl
 The elements in the same location are : 
