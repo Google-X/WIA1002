@@ -78,6 +78,19 @@ public class Q5ArrayHashTableChaining {
             HashTable.getLocation(PID);
         }
         else System.out.println("Product ID " + PID + " cannot be found");
+        
+//      TEST AMEND SAME KEY
+        System.out.println("\nTest amend value for key : " + testRemove);
+        HashTable.put(testRemove, name + " V2");
+        HashTable.showHashTable();
+        
+        System.out.println("Test locating key : 10863");
+        PID = 10863;
+        if(HashTable.containsKey(PID)) {
+            System.out.println("Product ID : " + PID + " " + HashTable.get(PID));
+            HashTable.getLocation(PID);
+        }
+        else System.out.println("Product ID " + PID + " cannot be found");
     }
 }
 /*
@@ -152,4 +165,18 @@ Test locating key : 10863
 Product ID : 10863 Black Pearl
 The elements in the same location are : 
 10403 : D24 --> 10863 : Black Pearl --> 10643 : D101 --> 10203 : Musang King --> 
+
+Test amend value for key : 10203
+10403 : D24
+10863 : Black Pearl
+10643 : D101
+10203 : Musang King V2
+10425 : Golden Phoenix
+10311 : XO
+10714 : Green Bamboo
+10719 : Red Prawn
+Test locating key : 10863
+Product ID : 10863 Black Pearl
+The elements in the same location are : 
+10403 : D24 --> 10863 : Black Pearl --> 10643 : D101 --> 10203 : Musang King V2 --> 
 */
