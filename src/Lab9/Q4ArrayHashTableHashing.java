@@ -53,13 +53,20 @@ public class Q4ArrayHashTableHashing {
         else System.out.println("Product ID " + PID + " cannot be found");
         
         // Test to get linear probing to index 0
+        int testAdding = 10739;
         System.out.println("\nAdding new limited durian : 10739 % 20 == 19 --> same as Red Prawn");
-        HashTable.put(10739, "Zero-To-Hero");
+        HashTable.put(testAdding, "Zero-To-Hero");
         HashTable.showHashTable();
         System.out.println("The Hash Table size is " + HashTable.getSize());
-        System.out.println("Product ID : " + PID + " " + HashTable.get(10739));
-        System.out.println("Location : " + HashTable.getLocation(10739));
+        System.out.println("Product ID : " + testAdding + " " + HashTable.get(testAdding));
+        System.out.println("Location : " + HashTable.getLocation(testAdding));
         
+        // Test removing
+        int testRemove = 10643;
+        System.out.println("\nRemoving key : " + testRemove);
+        HashTable.remove(testRemove);
+        HashTable.showHashTable();
+        System.out.println("The Hash Table size is " + HashTable.getSize());
     }
 }
 /*
@@ -91,4 +98,30 @@ The Hash Table size is 8
 Enter a PID to search : 10863
 Product ID : 10863 Black Pearl
 Location : 6
+
+Example of adding and removing key
+Adding new limited durian : 10739 % 20 == 19 --> same as Red Prawn
+10739 : Zero-To-Hero
+10203 : Musang King
+10403 : D24
+10425 : Golden Phoenix
+10863 : Black Pearl
+10643 : D101
+10311 : XO
+10714 : Green Bamboo
+10719 : Red Prawn
+The Hash Table size is 9
+Product ID : 10739 Zero-To-Hero
+Location : 0
+
+Removing key : 10643
+10739 : Zero-To-Hero
+10203 : Musang King
+10403 : D24
+10425 : Golden Phoenix
+10863 : Black Pearl
+10311 : XO
+10714 : Green Bamboo
+10719 : Red Prawn
+The Hash Table size is 8
 */
