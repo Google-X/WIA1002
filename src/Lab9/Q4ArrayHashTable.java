@@ -104,11 +104,11 @@ public class Q4ArrayHashTable<K, V> {
             HashTable[getLocation((Comparable<K>) key)].setValue(val);
         } else {
             if(!isFull()){
-                if(HashTable[getHashCode(key)] == null){
-                    HashTable[getHashCode(key)] = new ArrayMapNode<>(key, val);
+                int code = getHashCode(key);
+                if(HashTable[code] == null){
+                    HashTable[code] = new ArrayMapNode<>(key, val);
                     size++;
                 } else {
-                    int code = getHashCode(key);
                     for (int i = code + 1; i < MAX + code; i++) {
                         if (HashTable[i % MAX] == null) {
                             HashTable[i % MAX] = new ArrayMapNode<>(key, val);
