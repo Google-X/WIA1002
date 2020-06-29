@@ -95,8 +95,12 @@ public class Q5ArrayHashTable<K, V> {
                 size++;
             } else {
                 int code = getHashCode(key);
-                HashTable[code].addNode((Comparable<K>) key, val);
-                size++;
+                if(!HashTable[code].containsKey((Comparable<K>) key)){
+                    HashTable[code].addNode((Comparable<K>) key, val);
+                    size++;
+                } else {
+                    HashTable[code].addNode((Comparable<K>) key, val);
+                }
             }
         } else System.out.println("The table is full.");
     }
