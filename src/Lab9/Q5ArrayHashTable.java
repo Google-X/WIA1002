@@ -89,12 +89,12 @@ public class Q5ArrayHashTable<K, V> {
     
     // Question 5 Chaining
     public void put(K key, V val){
+        int code = getHashCode(key);
         if(!isFull()){
-            if(HashTable[getHashCode(key)] == null){
-                HashTable[getHashCode(key)] = new Q5HashChain<>(key, val);
+            if(HashTable[code] == null){
+                HashTable[code] = new Q5HashChain<>(key, val);
                 size++;
             } else {
-                int code = getHashCode(key);
                 if(!HashTable[code].containsKey((Comparable<K>) key)){
                     HashTable[code].addNode((Comparable<K>) key, val);
                     size++;
@@ -102,7 +102,11 @@ public class Q5ArrayHashTable<K, V> {
                     HashTable[code].addNode((Comparable<K>) key, val);
                 }
             }
-        } else System.out.println("The table is full.");
+        } else {
+            if(HashTable[code].containsKey((Comparable<K>) key)){
+                HashTable[code].addNode((Comparable<K>) key, val);
+            } else System.out.println("The table is full.");
+        }
     }
     
     private int getHashCode(K key){
